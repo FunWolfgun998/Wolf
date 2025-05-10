@@ -1,0 +1,9 @@
+# ninja log v6
+18	146	7685973592592227	CMakeFiles/Wolf.dir/src/parser.cpp.obj	adff893ca0349263
+11	147	7685973592530764	CMakeFiles/Wolf.dir/src/lexer.cpp.obj	932f33fe88cc1f0e
+26	161	7685973592669166	CMakeFiles/Wolf.dir/src/ast.cpp.obj	bca60c6520099e3f
+2	570	7685977226385508	CMakeFiles/Wolf.dir/src/main.cpp.obj	eb2284d13d9db800
+2	439	7685977434286972	build.ninja	b40d7bf7359bb979
+36	166	7685973592773316	CMakeFiles/Wolf.dir/src/compiler.cpp.obj	a02fc1edcbe46c17
+576	739	7685977232121306	Wolf.exe	2983948dc9d5f48
+6	472	7685977434286972	build.ninja	b40d7bf7359bb979
