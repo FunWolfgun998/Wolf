@@ -35,7 +35,7 @@ class FloatLiteralNode;
 
 using ASTNodeVariant = std::variant<
     IntLiteralNode,
-    FloatLiteralNode,
+    FloatLiteralNode
     // ... (tutti gli altri nodi concreti)
 >;
 
