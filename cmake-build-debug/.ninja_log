@@ -1,9 +1,20 @@
 # ninja log v6
-18	146	7685973592592227	CMakeFiles/Wolf.dir/src/parser.cpp.obj	adff893ca0349263
-11	147	7685973592530764	CMakeFiles/Wolf.dir/src/lexer.cpp.obj	932f33fe88cc1f0e
+16	2849	7724833277600814	CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.obj	e626857ea59908db
+20	782	7713465369851532	CMakeFiles/Wolf.dir/src/parser.cpp.obj	adff893ca0349263
+28	1148	7715349846739491	CMakeFiles/Wolf.dir/src/ast/AST.cpp.obj	6548c0aec6d4f79e
+129	362	7715320430466448	CMakeFiles/Wolf.dir/src/ast/ASTVisitor.cpp.obj	e46ad63aefbfd76b
+23	1664	7713465257565498	CMakeFiles/Wolf.dir/src/lexer.cpp.obj	932f33fe88cc1f0e
+4	522	7726601829112162	build.ninja	b40d7bf7359bb979
+10	1416	7724829919554452	CMakeFiles/Wolf.dir/src/main.cpp.obj	eb2284d13d9db800
 26	161	7685973592669166	CMakeFiles/Wolf.dir/src/ast.cpp.obj	bca60c6520099e3f
-2	570	7685977226385508	CMakeFiles/Wolf.dir/src/main.cpp.obj	eb2284d13d9db800
-2	439	7685977434286972	build.ninja	b40d7bf7359bb979
 36	166	7685973592773316	CMakeFiles/Wolf.dir/src/compiler.cpp.obj	a02fc1edcbe46c17
-576	739	7685977232121306	Wolf.exe	2983948dc9d5f48
-6	472	7685977434286972	build.ninja	b40d7bf7359bb979
+123	321	7715288433212291	CMakeFiles/Wolf.dir/test/ast_tests.cpp.obj	29a6bd9c4cd06191
+2850	3650	7724833305941609	Wolf.exe	f2fba76809579132
+132	315	7715288433306184	CMakeFiles/Wolf.dir/src/Parser/Token.cpp.obj	7b39d318d2549b0d
+57	1109	7715349847033081	CMakeFiles/Wolf.dir/src/ast/nodes/Statements.cpp.obj	873db5eb4be0732a
+309	422	7715288435075981	CMakeFiles/Wolf.dir/test/parser_tests.cpp.obj	addd5e4b367e485f
+37	1136	7715349846841213	CMakeFiles/Wolf.dir/src/ast/nodes/Declarations.cpp.obj	2b8077bb9a67bb0
+31	845	7715353862029510	CMakeFiles/Wolf.dir/src/ast/nodes/Expressions.cpp.obj	38532ce50b1ebee7
+64	1081	7715349847105033	CMakeFiles/Wolf.dir/src/ast/nodes/Literals.cpp.obj	43fa946787982521
+14	2403	7724829343751891	CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.obj	334f315628d987d9
+10	845	7715358573525693	CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.obj	f87c1ed72ab41704

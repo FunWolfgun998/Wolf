@@ -56,33 +56,82 @@ build CMakeFiles/Wolf.dir/src/main.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D
   OBJECT_DIR = CMakeFiles\Wolf.dir
   OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src
 
-build CMakeFiles/Wolf.dir/src/lexer.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/lexer.cpp || cmake_object_order_depends_target_Wolf
-  DEP_FILE = CMakeFiles\Wolf.dir\src\lexer.cpp.obj.d
+build CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/Parser/Lexer.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\Parser\Lexer.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -ID:/Wolf/Wolf/include
   OBJECT_DIR = CMakeFiles\Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\Parser
 
-build CMakeFiles/Wolf.dir/src/parser.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/parser.cpp || cmake_object_order_depends_target_Wolf
-  DEP_FILE = CMakeFiles\Wolf.dir\src\parser.cpp.obj.d
+build CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/Parser/Parser.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\Parser\Parser.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -ID:/Wolf/Wolf/include
   OBJECT_DIR = CMakeFiles\Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\Parser
 
-build CMakeFiles/Wolf.dir/src/ast.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast.cpp || cmake_object_order_depends_target_Wolf
-  DEP_FILE = CMakeFiles\Wolf.dir\src\ast.cpp.obj.d
+build CMakeFiles/Wolf.dir/src/ast/nodes/Declarations.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast/nodes/Declarations.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\ast\nodes\Declarations.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -ID:/Wolf/Wolf/include
   OBJECT_DIR = CMakeFiles\Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast\nodes
 
-build CMakeFiles/Wolf.dir/src/compiler.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/compiler.cpp || cmake_object_order_depends_target_Wolf
-  DEP_FILE = CMakeFiles\Wolf.dir\src\compiler.cpp.obj.d
+build CMakeFiles/Wolf.dir/src/ast/nodes/Expressions.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast/nodes/Expressions.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\ast\nodes\Expressions.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -ID:/Wolf/Wolf/include
   OBJECT_DIR = CMakeFiles\Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast\nodes
+
+build CMakeFiles/Wolf.dir/src/ast/nodes/Statements.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast/nodes/Statements.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\ast\nodes\Statements.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast\nodes
+
+build CMakeFiles/Wolf.dir/src/ast/ASTVisitor.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast/ASTVisitor.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\ast\ASTVisitor.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast
+
+build CMakeFiles/Wolf.dir/test/ast_tests.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/test/ast_tests.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\test\ast_tests.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\test
+
+build CMakeFiles/Wolf.dir/src/Parser/Token.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/Parser/Token.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\Parser\Token.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\Parser
+
+build CMakeFiles/Wolf.dir/test/parser_tests.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/test/parser_tests.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\test\parser_tests.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\test
+
+build CMakeFiles/Wolf.dir/src/ast/nodes/Literals.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast/nodes/Literals.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\ast\nodes\Literals.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast\nodes
+
+build CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast/ASTPrinter.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\ast\ASTPrinter.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast
 
 
 # =============================================================================
@@ -92,7 +141,7 @@ build CMakeFiles/Wolf.dir/src/compiler.cpp.obj: CXX_COMPILER__Wolf_unscanned_Deb
 #############################################
 # Link the executable Wolf.exe
 
-build Wolf.exe: CXX_EXECUTABLE_LINKER__Wolf_Debug CMakeFiles/Wolf.dir/src/main.cpp.obj CMakeFiles/Wolf.dir/src/lexer.cpp.obj CMakeFiles/Wolf.dir/src/parser.cpp.obj CMakeFiles/Wolf.dir/src/ast.cpp.obj CMakeFiles/Wolf.dir/src/compiler.cpp.obj
+build Wolf.exe: CXX_EXECUTABLE_LINKER__Wolf_Debug CMakeFiles/Wolf.dir/src/main.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.obj CMakeFiles/Wolf.dir/src/ast/nodes/Declarations.cpp.obj CMakeFiles/Wolf.dir/src/ast/nodes/Expressions.cpp.obj CMakeFiles/Wolf.dir/src/ast/nodes/Statements.cpp.obj CMakeFiles/Wolf.dir/src/ast/ASTVisitor.cpp.obj CMakeFiles/Wolf.dir/test/ast_tests.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Token.cpp.obj CMakeFiles/Wolf.dir/test/parser_tests.cpp.obj CMakeFiles/Wolf.dir/src/ast/nodes/Literals.cpp.obj CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Wolf.dir
