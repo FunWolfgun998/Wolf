@@ -5,10 +5,14 @@
 #include <variant>
 #include <string>
 #include <type_traits>
+#include <utility>
+#include <vector>
+#include "ASTVisitor.h"
+#define AST_NODE(type) \
+class type : public ASTNode<type>
 
-// Forward declaration
+
 class ASTVisitor;
-
 // ======================================================
 // CRTP Base Class
 // ======================================================
@@ -16,29 +20,12 @@ template <typename Derived>
 class ASTNode {
 public:
     virtual ~ASTNode() = default;
-
     void accept(ASTVisitor& visitor) const {
         visitor.visit(static_cast<const Derived&>(*this));
     }
 };
-
-// Smart pointer type
 using ASTNodePtr = std::unique_ptr<ASTNode<void>>;
-
-// ======================================================
-// Node Type Variant
-// ======================================================
-// Forward declarations di tutti i tipi di nodo
-class IntLiteralNode;
-class FloatLiteralNode;
-// ... (tutti gli altri nodi concreti)
-
-using ASTNodeVariant = std::variant<
-    IntLiteralNode,
-    FloatLiteralNode
-    // ... (tutti gli altri nodi concreti)
->;
-
+//need to create the variant AST node
 // ======================================================
 // Node Factory Utilities
 // ======================================================
@@ -49,17 +36,54 @@ namespace AST {
             "Type must inherit from ASTNode");
         return std::make_unique<T>(std::forward<Args>(args)...);
     }
-
-    template <typename T>
-    const T* get_if(const ASTNodeVariant& v) {
-        return std::get_if<T>(&v);
-    }
 }
-
-// ======================================================
-// Macro per Dichiarazione Nodi
-// ======================================================
-#define DECLARE_AST_NODE(type) \
-    class type : public ASTNodeBase<type>
+//foward declarations
+class ProgramNode;
+class IntLiteralNode;
+class FloatLiteralNode;
+class StringLiteralNode;
+class BoolLiteralNode;
+class NullLiteralNode;
+class ArrayLiteralNode;
+class IdentifierNode;
+class BinaryExprNode;
+class UnaryExprNode;
+class TernaryExprNode;
+class AssignmentNode;
+class CompoundAssignmentNode; // +=, -= etc.
+class VariableDeclNode;
+class VariableInitNode;
+class FunctionDeclNode;
+class FunctionParamNode;
+class ClassDeclNode;
+class ClassPropertyNode;
+class ClassMethodNode;
+class CallExprNode;
+class MethodCallNode;
+class ArrayAccessNode;
+class MemberAccessNode;
+class NewExprNode;
+class BlockNode;
+class IfNode;
+class ElseNode;
+class ForNode;
+class WhileNode;
+class DoWhileNode;
+class SwitchNode;
+class CaseNode;
+class ReturnNode;
+class BreakNode;
+class ContinueNode;
+class ThrowNode;
+class TryCatchNode;
+class ImportNode;
+class ExportNode;
+class TypeAnnotationNode;
+class TemplateDeclNode;
+class GenericTypeNode;
+class YieldNode;
+class AwaitNode;
+class CommentNode;
+class DirectiveNode;
 
 #endif // ASTNODE_H

@@ -14,9 +14,6 @@ add_executable(Wolf
         include/ast/ast.h
         include/utils/Diagnostics.h
         include/utils/resources.h
-        include/ast/nodes/Declarations.h
-        include/ast/nodes/Expressions.h
-        include/ast/nodes/Statements.h
         include/ast/ASTVisitor.h
         src/ast/nodes/Declarations.cpp
         src/ast/nodes/Expressions.cpp
@@ -25,12 +22,14 @@ add_executable(Wolf
         include/parser/Token.h
         src/Parser/Token.cpp
         test/parser_tests.cpp
-        include/ast/nodes/Literals.h
         src/ast/nodes/Literals.cpp
         include/ast/ASTPrinter.h
         src/ast/ASTPrinter.cpp
         include/parser/ParseError.h
         include/ast/ASTNode.h
+        include/ast/nodes/BinaryExprNode.h
+        include/ast/nodes/ProgramNode.h
+        include/ast/nodes/IntLiteralNode.h
 )
 
 # Includi i file header

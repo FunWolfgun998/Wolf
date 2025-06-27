@@ -7,9 +7,33 @@
 // Additional utilities and forward declarations
 // ======================================================
 enum class NodeType {
-    PROGRAM,
-    VARIABLE_DECL,
-    // ... (tutti i tipi di nodo)
+    // Dichiarazioni
+    Program,
+    VariableDecl,
+    FunctionDecl,
+    ClassDecl,
+
+    // Espressioni
+    BinaryExpr,
+    UnaryExpr,
+    CallExpr,
+    Identifier,
+
+    // Letterali
+    IntLiteral,
+    FloatLiteral,
+    StringLiteral,
+
+    // Statement
+    Block,
+    If,
+    For,
+    While,
+    Return,
+
+    // Altri
+    Import,
+    TypeAnnotation
 };
 
 // Helper per nodi che necessitano di NodeType

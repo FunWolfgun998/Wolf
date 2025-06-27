@@ -1,7 +1,6 @@
 //
 // Created by Personal on 09/06/2025.
 //
-
 #ifndef LOG_TOOLS_H
 #define LOG_TOOLS_H
 inline const char* typeTokenToString(TypeToken type) {

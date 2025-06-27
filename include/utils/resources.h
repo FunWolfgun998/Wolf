@@ -1,26 +1,30 @@
-//
-// Created by Personal on 11/06/2025.
-//
-
 #ifndef RESOURCES_H
 #define RESOURCES_H
 
-#define tab_value 4
+#include <memory>
+#include <vector>
+#include <string>
 
+// Configurazione
+#define TAB_VALUE 4
+
+// ======================================================
+// Tipi di Token (mantenuto da versione originale)
+// ======================================================
 enum class TypeToken {
-    // Type of value
+    // Tipi di valore
     Int,
     Float,
     Char,
     String,
 
-    // Value
+    // Valori
     IntValue,
     FloatValue,
     CharValue,
     StringValue,
 
-    // Logic gates
+    // Strutture di controllo
     If,
     Else,
     Elif,
@@ -32,79 +36,68 @@ enum class TypeToken {
     True,
     False,
 
-    // Functions
+    // Funzioni
     Func,
 
-    // Structure
+    // Struttura
     Indent,
     Dedent,
     Newline,
     End,
 
-    //Punctuation
+    // Punteggiatura
     Colon,
 
-    // Basic operators
-    OpAssign,       // =
-    OpPlus,         // +
-    OpMinus,        // -
-    OpMultiply,     // *
-    OpDivide,       // /
-    OpModulo,       // %
+    // Operatori (mantenuti dalla versione originale)
+    OpAssign, OpPlus, OpMinus, OpMultiply, OpDivide, OpModulo,
+    OpEqual, OpNotEqual, OpLess, OpLessEqual, OpGreater, OpGreaterEqual,
+    OpAnd, OpOr, OpNot,
+    OpPlusAssign, OpMinusAssign, OpMultiplyAssign, OpDivideAssign, OpModuloAssign,
+    OpShiftLeft, OpShiftRight,
 
-    // Comparison operators
-    OpEqual,        // ==
-    OpNotEqual,     // !=
-    OpLess,         // <
-    OpLessEqual,    // <=
-    OpGreater,      // >
-    OpGreaterEqual, // >=
-
-    // Logical operators
-    OpAnd,          // &&
-    OpOr,           // ||
-    OpNot,          // !
-
-    // Compound operators
-    OpPlusAssign,   // +=
-    OpMinusAssign,  // -=
-    OpMultiplyAssign, // *=
-    OpDivideAssign, // /=
-    OpModuloAssign, // %=
-    OpShiftLeft,// <<
-    OpShiftRight,// >>
-
-    // Other
+    // Altro
     Comment,
     VarName,
     Unknown
 };
-enum class TypeParser {
-    IntInitialization,
-    IntDeclaration,
-    FloatInitialization,
-    FloatDeclaration,
-    CharInitialization,
-    CharDeclaration,
-    StringInitialization,
-    StringDeclaration,
-    Endprogram,
-    Unknown
-};
-struct Token {
-    TypeToken type;
-    std::string value;
-};
-struct NodeAST {
 
-    TypeParser type;
-    Token value; // leaf value
-    std::vector<Token> leafs; // branch value
-
-    // Constructor of the leaf note
-    NodeAST(TypeParser type, Token value) : type(type), value(value) {}
-
-    // Constructor of the branch note
-    NodeAST(TypeParser type, std::vector<Token> leafs) : type(type), leafs(std::move(leafs)) {}
+// ======================================================
+// Tipi di Nodi AST
+// ======================================================
+enum class NodeType {
+    // Dichiarazioni
+    Program,
+    VariableDecl,
+    VariableInit,
+    FunctionDecl,
+    
+    // Espressioni
+    BinaryExpr,
+    UnaryExpr,
+    Literal,
+    Identifier,
+    
+    // Statement
+    Block,
+    If,
+    For,
+    While,
+    Return,
+    
+    // Altri
+    Import,
+    TypeAnnotation
 };
-#endif
+
+// ======================================================
+// Interfaccia base AST (sostituisce NodeAST)
+// ======================================================
+class ASTNode {
+public:
+    virtual ~ASTNode() = default;
+    virtual NodeType getType() const = 0;
+    virtual std::vector<Token> getTokens() const = 0;
+    virtual std::string toString() const = 0;
+};
+
+#endif // RESOURCES_H
