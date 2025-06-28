@@ -10,7 +10,7 @@
 AST_NODE(StringLiteralNode) {
     std::string value;
     public:
-    explicit IntLiteralNode(std::string value): value(std::move(value)){}
+    explicit StringLiteralNode(std::string value): value(std::move(value)){}
 
 };
 

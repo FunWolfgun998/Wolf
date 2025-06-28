@@ -12,4 +12,3 @@ AST_NODE(NullLiteralNode) {
     NullLiteralNode() = default;
 };
 #endif //NULLLITERALNODE_H
-#endif //NULLLITERALNODE_H

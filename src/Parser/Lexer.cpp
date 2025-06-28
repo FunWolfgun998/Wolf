@@ -1,4 +1,8 @@
 #include "parser/Lexer.h"
+
+#include <iostream>
+#include <bits/ostream.tcc>
+
 #include "parser/Token.h"
 
 const std::unordered_map<std::string, TypeToken> Lexer::keywords = {
@@ -303,9 +307,11 @@ Token Lexer::getIdentifierOrKeyword() {
 
     auto it = keywords.find(word);
     if (it != keywords.end()) {
+        std::cout << "" << std::endl;
+        std::cout << word << std::endl;
         return Token{it->second, word};
     } else {
-        return Token{TypeToken::VarName, word};
+        return Token{TypeToken::Identifier, word};
     }
 }
 

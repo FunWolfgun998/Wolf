@@ -57,7 +57,7 @@ enum class TypeToken {
 
     // Altro
     Comment,
-    VarName,
+    Identifier,
     Unknown
 };
 

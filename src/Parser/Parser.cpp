@@ -1,98 +1,68 @@
 #include "parser/Parser.h"
-
-#include <iostream>
+#include "ast/nodes/AllNodes.h"
 #include <set>
 
-#include "ast/nodes/Declarations.h"
-#include "ast/nodes/Expressions.h"
-#include "ast/nodes/Literals.h"
-#include "ast/nodes/Statements.h"
+
 #include "parser/ParseError.h"
 #include <stdexcept>
 
 Parser::Parser(std::vector<Token> tokens)
     : tokens(std::move(tokens)), pos(0) {}
 
-ASTNodePtr Parser::parse() {
-    return parseProgram();
+ASTNodePtr Parser::ParseTokens() {
+    std::vector<ASTNodePtr> statements;
+
+    while (!Is(TypeToken::End)) {
+        consumeNewlines();
+        statements.push_back(parseStatement());
+    }
+
+    return std::make_unique<ProgramNode>(std::move(statements));
+}
+void Parser::consumeNewlines() {
+    while (Is(TypeToken::Newline)|| Is(TypeToken::Comment)) {
+        consumeToken();
+    }
+}
+ASTNodePtr Parser::parseBlock() {
 }
 
 // Helper functions implementation
 const Token& Parser::currentToken() const {
-    if (pos >= tokens.size()) {
-        static Token endToken{TypeToken::End, ""};
-        return endToken;
-    }
     return tokens[pos];
 }
 
 const Token& Parser::consumeToken() {
     return tokens[pos++];
 }
-//capire perché se consumo mi ritorna come varname int non cv
 
-bool Parser::IsSame(TypeToken type) const {
+bool Parser::Is(TypeToken type) const {
     return tokens[pos].type == type;
 }
-
+bool Parser::IsNext(TypeToken type) const {
+    return tokens[pos+1].type == type;
+}
 void Parser::expect(TypeToken type, const std::string& errorMsg) {
-    if (!IsSame(type)) {
+    if (!Is(type)) {
         throw std::runtime_error(errorMsg + ". Found: " + std::to_string(static_cast<int>(currentToken().type)));
     }
     consumeToken();
 }
 void Parser::peek(TypeToken type, const std::string& errorMsg) {
-    if (!IsSame(type)) {
+    if (!Is(type)) {
         throw std::runtime_error(errorMsg + ". Found: " + std::to_string(static_cast<int>(currentToken().type)));
     }
 }
 
-// Main parsing methods
-// Modifica a parseProgram()
-ASTNodePtr Parser::parseProgram() {
-    std::vector<ASTNodePtr> statements;
-
-    while (!IsSame(TypeToken::End)) {
-
-        if (IsSame(TypeToken::Newline)) {
-            pos++;
-            continue;
-        }
-
-        // Create a block base on indentation
-        if (IsSame(TypeToken::Indent)) {
-            pos++;
-            auto block = parseBlock();
-            statements.push_back(std::move(block));
-            continue;
-        }
-
-        statements.push_back(parseStatement());
-    }
-
-    return std::make_unique<ProgramNode>(std::move(statements));
-}
-ASTNodePtr Parser::parseBlock() {
-    std::vector<ASTNodePtr> statements;
-
-    while (!IsSame(TypeToken::Dedent) && !IsSame(TypeToken::End)) {
-        statements.push_back(parseStatement());
-    }
-
-    if (IsSame(TypeToken::Dedent)) {
-        consumeToken();
-    }
-
-    return std::make_unique<BlockNode>(std::move(statements));
-}
 ASTNodePtr Parser::parseStatement() {
     consumeNewlines();
     if (isTypeToken(currentToken().type)) {
         return parseDeclaration();
     }
-    if (currentToken().type == TypeToken::VarName) {
-        peek(TypeToken::OpAssign, "Expected '=' to assign a value to a variable");
-        return parseAssaingValue();
+    if (Is(TypeToken::Identifier)) {
+        if(IsNext(TypeToken::OpAssign)) {
+            return parseAssignment();
+        }
     }
     // Aggiungi qui altri tipi di statement...
 
@@ -100,29 +70,37 @@ ASTNodePtr Parser::parseStatement() {
 }
 
 ASTNodePtr Parser::parseDeclaration() {
-    TypeToken typeToken = consumeToken().type;
-    std::string typeStr;
+    std::string typeStr = consumeToken().value;
 
-    switch (typeToken) {
-        case TypeToken::Int: typeStr = "int"; break;
-        case TypeToken::Float: typeStr = "float"; break;
-        case TypeToken::Char: typeStr = "char"; break;
-        case TypeToken::String: typeStr = "string"; break;
-        default: throw std::runtime_error("Expected type specifier");
-    }
-
-    peek(TypeToken::VarName, "Expected variable name");
-    std::string varName = consumeToken().value;
+    peek(TypeToken::Identifier, "Expected variable name");
+    std::string Identifier = consumeToken().value;
 
     // Simple declaration (int x)
     if (isEndOfStatement()) {
         consumeNewlines();
-        return std::make_unique<VariableDeclNode>(typeStr, varName);
+        return std::make_unique<VariableDeclNode>(typeStr, Identifier);
     }
 
     // Initialization (int x = 42)
-    if (IsSame(TypeToken::OpAssign)) {
-        consumeToken(); // Consuma '='
+    if (Is(TypeToken::OpAssign)) {
+        consumeToken();
+        auto initValue = parseExpression();
+
+        if (!isAtStatementEnd()) {
+            throw ParseError("Expected newline after initialization");
+        }
+        consumeNewlines();
+        return std::make_unique<VariableInitNode>(typeStr, Identifier, std::move(initValue));
+    }
+
+    throw std::runtime_error("Invalid variable declaration");
+}
+
+ASTNodePtr Parser::parseAssignment() {
+    std::string Identifier = consumeToken().value;
+
+    if (isassaseingm(currentToken().type)) {
+        TypeToken typeofsign = consumeToken().type;
         auto initValue = parseExpression();
 
         if (!isAtStatementEnd()) {
@@ -130,26 +108,12 @@ ASTNodePtr Parser::parseDeclaration() {
         }
         consumeNewlines();
 
-        return std::make_unique<VariableInitNode>(typeStr, varName, std::move(initValue));
+        return std::make_unique<AssignmentNode>( Identifier, std::move(initValue));
+    }else {
+        ParseError("Expected assignment sign");
     }
 
-    throw std::runtime_error("Invalid variable declaration");
 }
-
-ASTNodePtr Parser::parseAssaingValue() {
-    std::string VariableName = consumeToken().value;
-    peek(TypeToken::OpAssign, "Expected '=' to assign a value to a variable");
-    consumeToken();
-    auto initValue = parseExpression();
-
-        if (!isAtStatementEnd()) {
-            throw ParseError("Expected newline after initialization");
-        }
-        consumeNewlines();
-
-        return std::make_unique<VariableInitNode>(typeStr, varName, std::move(initValue));
-}
-
 
 ASTNodePtr Parser::parseExpression() {
     auto left = parsePrimary();
@@ -159,23 +123,37 @@ ASTNodePtr Parser::parseExpression() {
 ASTNodePtr Parser::parsePrimary() {
     if (isTypeValueToken(currentToken().type)) {
         auto token = consumeToken();
-        return std::make_unique<LiteralNode>(token.value,
-            token.type == TypeToken::IntValue ? "int" :token.type == TypeToken::FloatValue ? "float": token.type == TypeToken::CharValue ? "char" : token.type == TypeToken::StringValue ? "string" :"Error: you can");
+
+        switch(token.type) {
+            case TypeToken::IntValue:
+                return std::make_unique<IntLiteralNode>(std::stoi(token.value));
+            case TypeToken::FloatValue:
+                return std::make_unique<FloatLiteralNode>(std::stod(token.value));
+            case TypeToken::CharValue:
+                return std::make_unique<CharLiteralNode>(token.value.empty() ? '\0' : token.value[0]);
+            case TypeToken::StringValue:
+                return std::make_unique<StringLiteralNode>(token.value);
+            case TypeToken::True:
+            case TypeToken::False:
+                return std::make_unique<BoolLiteralNode>(token.type == TypeToken::True);
+            default:
+                throw ParseError("Unsupported literal type");
+        }
     }
 
-    if (IsSame(TypeToken::VarName)) {
+    if (Is(TypeToken::Identifier)) {
         auto token = consumeToken();
         return std::make_unique<IdentifierNode>(token.value);
     }
 
-    if (IsSame(TypeToken::LeftParen)) {
+    if (Is(TypeToken::LeftParen)) {
         consumeToken(); // Consume '('
         auto expr = parseExpression();
         expect(TypeToken::RightParen, "Expected ')' after expression");
         return expr;
     }
 
-    throw std::runtime_error("Unexpected token in expression"+currentToken().value);
+    throw ParseError("Unexpected token in expression: " + currentToken().value);
 }
 
 ASTNodePtr Parser::parseBinaryOp(ASTNodePtr left, int minPrecedence) {
@@ -205,12 +183,19 @@ ASTNodePtr Parser::parseBinaryOp(ASTNodePtr left, int minPrecedence) {
 
     return left;
 }
-
 // Utility functions implementation
 bool Parser::isTypeToken(TypeToken type) const {
     static const std::set<TypeToken> typeTokens = {
         TypeToken::Int, TypeToken::Float,
         TypeToken::Char, TypeToken::String
+    };
+    return typeTokens.count(type) > 0;
+}
+// Utility functions implementation
+bool Parser::isassaseingm(TypeToken type) const {
+    static const std::set<TypeToken> typeTokens = {
+        TypeToken::OpAssign, TypeToken::OpDivideAssign,
+        TypeToken::OpMinusAssign, TypeToken::OpMultiplyAssign,TypeToken::OpPlusAssign,
     };
     return typeTokens.count(type) > 0;
 }
@@ -223,9 +208,7 @@ bool Parser::isTypeValueToken(TypeToken type) const {
     return typeTokens.count(type) > 0;
 }
 
-bool Parser::isEndOfStatement() const {
-    return IsSame(TypeToken::Newline) || IsSame(TypeToken::End);
-}
+
 
 int Parser::getOperatorPrecedence(TypeToken op) const {
     static const std::unordered_map<TypeToken, int> precedence = {
@@ -245,14 +228,7 @@ bool Parser::isOperatorStart(TypeToken type) const {
     };
     return operators.count(type) > 0;
 }
-// skip all the newlines and comments
-void Parser::consumeNewlines() {
-    while (IsSame(TypeToken::Newline)|| IsSame(TypeToken::Comment)) {
-        consumeToken();
-    }
-}
 
-// Verifica se siamo alla fine di un'istruzione
-bool Parser::isAtStatementEnd() const {
-    return IsSame(TypeToken::Newline) || IsSame(TypeToken::End);
+bool Parser::isEndOfStatement() const {
+    return Is(TypeToken::Newline) || Is(TypeToken::End);
 }

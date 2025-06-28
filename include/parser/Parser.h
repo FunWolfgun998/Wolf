@@ -14,7 +14,7 @@ class Parser {
 public:
     explicit Parser(std::vector<Token> tokens);
 
-    ASTNodePtr parse();
+    ASTNodePtr ParseTokens();
 
 private:
     std::vector<Token> tokens;
@@ -23,7 +23,8 @@ private:
     // Helper functions
     const Token& currentToken() const;
     const Token& consumeToken();
-    bool IsSame(TypeToken type) const;
+    bool Is(TypeToken type) const;
+    bool IsNext(TypeToken type) const;
     void expect(TypeToken type, const std::string& errorMsg);
     void peek(TypeToken type, const std::string& errorMsg);
 
@@ -32,13 +33,14 @@ private:
     ASTNodePtr parseBlock();
     ASTNodePtr parseStatement();
     ASTNodePtr parseDeclaration();
-    ASTNodePtr parseAssaingValue();
+    ASTNodePtr parseAssignment();
     ASTNodePtr parseExpression();
     ASTNodePtr parsePrimary();
     ASTNodePtr parseBinaryOp(ASTNodePtr left, int minPrecedence);
 
     // Utility functions
     bool isTypeToken(TypeToken type) const;
+    bool isassaseingm(TypeToken type) const;
     bool isTypeValueToken(TypeToken type) const;
     bool isEndOfStatement() const;
     int getOperatorPrecedence(TypeToken op) const;

@@ -11,7 +11,7 @@
 AST_NODE(BoolLiteralNode) {
     bool value;
     public:
-    explicit IntLiteralNode(bool value): value(value){}
+    explicit BoolLiteralNode(bool value): value(value){}
 
 };
 #endif //BOOTLITERALNODE_H

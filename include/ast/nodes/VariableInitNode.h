@@ -2,17 +2,17 @@
 // Created by Personal on 28/06/2025.
 //
 
-#ifndef VARIABLEDECLNODE_H
-#define VARIABLEDECLNODE_H
+#ifndef VARIABLEINITNODE_H
+#define VARIABLEINITNODE_H
 #include "ast/ASTNode.h"
 
-AST_NODE(VariableDeclNode) {
+AST_NODE(VariableInitNode) {//int = 567
     std::string name;           // Nome della variabile (es. "x")
     std::string type;     // Type es. int, float, char,
-
+    ASTNodePtr value;   // Value
     public:
-    VariableDeclNode(std::string name,std::string type)
-    : name(std::move(name)),type(std::move(type)){}
+    VariableInitNode(std::string name,std::string type, ASTNodePtr value)
+    : type(std::move(type)),name(std::move(name)),value(std::move(value)){}
 
     /*
     const std::string& getName() const { return name; }
@@ -20,4 +20,4 @@ AST_NODE(VariableDeclNode) {
     bool isConstant() const { return isConst; }
     */
 };
-#endif //VARIABLEDECLNODE_H
+#endif //VARIABLEINITNODE_H
