@@ -2,10 +2,8 @@
 // Created by Personal on 27/06/2025.
 //
 
-#ifndef INTLITERALNODE_H
-#define INTLITERALNODE_H
-
-#define "ast/ASTNode.h"
+#ifndef FLOATLITERALNODE_H
+#define FLOATLITERALNODE_H
 #include "ast/ASTNode.h"
 
 AST_NODE(FloatLiteralNode) {
@@ -15,4 +13,4 @@ AST_NODE(FloatLiteralNode) {
     
 };
 
-#endif //INTLITERALNODE_H
+#endif //FLOATLITERALNODE_H

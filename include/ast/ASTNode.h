@@ -44,11 +44,9 @@ class FloatLiteralNode;
 class StringLiteralNode;
 class BoolLiteralNode;
 class NullLiteralNode;
-class ArrayLiteralNode;
 class IdentifierNode;
 class BinaryExprNode;
 class UnaryExprNode;
-class TernaryExprNode;
 class AssignmentNode;
 class CompoundAssignmentNode; // +=, -= etc.
 class VariableDeclNode;
@@ -85,5 +83,8 @@ class YieldNode;
 class AwaitNode;
 class CommentNode;
 class DirectiveNode;
-
+/*
+class TernaryExprNode; //condition ? expr_if_true : expr_if_false
+class ArrayLiteralNode;
+ */
 #endif // ASTNODE_H

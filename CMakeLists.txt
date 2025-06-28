@@ -30,6 +30,13 @@ add_executable(Wolf
         include/ast/nodes/BinaryExprNode.h
         include/ast/nodes/ProgramNode.h
         include/ast/nodes/IntLiteralNode.h
+        include/ast/nodes/StringLiteralNode.h
+        include/ast/nodes/BootLiteralNode.h
+        include/ast/nodes/NullLiteralNode.h
+        include/ast/nodes/IdentifierNode.h
+        include/ast/nodes/AssignmentNode.h
+        include/ast/nodes/UnaryExprNode.h
+        include/ast/nodes/VariableDeclNode.h
 )
 
 # Includi i file header

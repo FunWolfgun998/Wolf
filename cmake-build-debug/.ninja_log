@@ -4,7 +4,7 @@
 28	1148	7715349846739491	CMakeFiles/Wolf.dir/src/ast/AST.cpp.obj	6548c0aec6d4f79e
 129	362	7715320430466448	CMakeFiles/Wolf.dir/src/ast/ASTVisitor.cpp.obj	e46ad63aefbfd76b
 23	1664	7713465257565498	CMakeFiles/Wolf.dir/src/lexer.cpp.obj	932f33fe88cc1f0e
-4	522	7727510695985572	build.ninja	b40d7bf7359bb979
+4	522	7728147937196292	build.ninja	b40d7bf7359bb979
 10	1416	7724829919554452	CMakeFiles/Wolf.dir/src/main.cpp.obj	eb2284d13d9db800
 26	161	7685973592669166	CMakeFiles/Wolf.dir/src/ast.cpp.obj	bca60c6520099e3f
 36	166	7685973592773316	CMakeFiles/Wolf.dir/src/compiler.cpp.obj	a02fc1edcbe46c17
