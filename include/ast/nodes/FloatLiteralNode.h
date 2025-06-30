@@ -9,7 +9,7 @@
 AST_NODE(FloatLiteralNode) {
     float value;
     public:
-    explicit FloatLiteralNode(float value): value(value){}
+    FloatLiteralNode(float value): value(value){}
     
 };
 

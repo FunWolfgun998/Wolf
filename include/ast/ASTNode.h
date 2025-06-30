@@ -7,7 +7,8 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
-
+#include "ast/ASTVisitor.h"
+// Forward declare ASTVisitor here
 class ASTVisitor;
 
 class ASTNodeBase {
@@ -15,14 +16,6 @@ public:
     virtual ~ASTNodeBase() = default;
     virtual void accept(ASTVisitor& visitor) const = 0;
 };
-
-template <typename Derived>
-class ASTNode : public ASTNodeBase {
-public:
-
-};
-
-using ASTNodePtr = std::unique_ptr<ASTNodeBase>;
 
 // First forward declare all node types
 #define FORWARD_DECLARE(type) class type;
@@ -173,19 +166,36 @@ using ASTNodeVariant = std::variant<
 
 namespace AST {
     template <typename T, typename... Args>
-    ASTNodePtr make_node(Args&&... args) {
-        static_assert(std::is_base_of_v<ASTNode<T>, T>,
-            "Type must inherit from ASTNode");
+    std::unique_ptr<T> make_node(Args&&... args) {
+        static_assert(std::is_base_of_v<ASTNodeBase, T>,
+            "Type must inherit from ASTNodeBase");
         return std::make_unique<T>(std::forward<Args>(args)...);
     }
 
     template <typename T, typename... Args>
     ASTNodeVariant make_variant_node(Args&&... args) {
-        static_assert(std::is_base_of_v<ASTNode<T>, T>,
-            "Type must inherit from ASTNode");
+        static_assert(std::is_base_of_v<ASTNodeBase, T>,
+            "Type must inherit from ASTNodeBase");
         return new T(std::forward<Args>(args)...);
     }
 }
+
+// Now define ASTNode template after all forward declarations
+template <typename Derived>
+class ASTNode : public ASTNodeBase {
+public:
+    // Version non-const
+    void accept(ASTVisitor& visitor) {
+        visitor.visit(static_cast<Derived&>(*this));
+    }
+
+    // Version const
+    void accept(ASTVisitor& visitor) const {
+        visitor.visit(static_cast<const Derived&>(*this));
+    }
+};
+
+using ASTNodePtr = std::unique_ptr<ASTNodeBase>;
 
 // Macro for defining AST node classes (to be used in their own headers)
 #define AST_NODE(type) \

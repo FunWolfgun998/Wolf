@@ -40,13 +40,12 @@ private:
 
     // Utility functions
     bool isTypeToken(TypeToken type) const;
-    bool isassaseingm(TypeToken type) const;
+    bool isAssignmentOperator(TypeToken type) const;
     bool isTypeValueToken(TypeToken type) const;
     bool isEndOfStatement() const;
     int getOperatorPrecedence(TypeToken op) const;
     bool isOperatorStart(TypeToken type) const;
     void consumeNewlines();
-    bool isAtStatementEnd() const;
 };
 
 #endif // MY_PARSER_PARSER_H

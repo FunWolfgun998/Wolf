@@ -9,7 +9,7 @@
 AST_NODE(CharLiteralNode) {
     char value;
     public:
-    explicit CharLiteralNode(char value): value(value){}
+    CharLiteralNode(char value): value(value){}
 
 };
 #endif //CHARLITERALNODE_H

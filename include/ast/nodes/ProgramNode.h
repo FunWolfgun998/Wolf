@@ -14,7 +14,7 @@ AST_NODE(ProgramNode) {
      explicit is needed to be sure that implicit conversions aren't allowed.
      ProgramNode p = ProgramNode(statements) OK, ProgramNode p = var1 NO ERROR
      */
-    explicit ProgramNode(std::vector<ASTNodePtr> statements)
+    ProgramNode(std::vector<ASTNodePtr> statements)
         : statements(std::move(statements)) {}
 };
 

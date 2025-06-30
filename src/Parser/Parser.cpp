@@ -24,9 +24,10 @@ void Parser::consumeNewlines() {
         consumeToken();
     }
 }
+/*
 ASTNodePtr Parser::parseBlock() {
 }
-
+*/
 // Helper functions implementation
 const Token& Parser::currentToken() const {
     return tokens[pos];
@@ -86,7 +87,7 @@ ASTNodePtr Parser::parseDeclaration() {
         consumeToken();
         auto initValue = parseExpression();
 
-        if (!isAtStatementEnd()) {
+        if (!isEndOfStatement()) {
             throw ParseError("Expected newline after initialization");
         }
         consumeNewlines();
@@ -99,20 +100,18 @@ ASTNodePtr Parser::parseDeclaration() {
 ASTNodePtr Parser::parseAssignment() {
     std::string Identifier = consumeToken().value;
 
-    if (isassaseingm(currentToken().type)) {
-        TypeToken typeofsign = consumeToken().type;
+    if (!isAssignmentOperator(currentToken().type)) {
+        ParseError("Expected assignment sign");
+    }
+    TypeToken typeofsign = consumeToken().type;
         auto initValue = parseExpression();
 
-        if (!isAtStatementEnd()) {
+        if (!isEndOfStatement()) {
             throw ParseError("Expected newline after initialization");
         }
         consumeNewlines();
 
-        return std::make_unique<AssignmentNode>( Identifier, std::move(initValue));
-    }else {
-        ParseError("Expected assignment sign");
-    }
-
+        return std::make_unique<AssignmentNode>(Identifier,typeofsign, std::move(initValue));
 }
 
 ASTNodePtr Parser::parseExpression() {
@@ -178,7 +177,7 @@ ASTNodePtr Parser::parseBinaryOp(ASTNodePtr left, int minPrecedence) {
             right = parseBinaryOp(std::move(right), nextPrecedence);
         }
 
-        left = std::make_unique<BinaryExprNode>(opToken.value, std::move(left), std::move(right));
+        left = std::make_unique<BinaryExprNode>(std::move(left),opToken.value,  std::move(right));
     }
 
     return left;
@@ -192,7 +191,7 @@ bool Parser::isTypeToken(TypeToken type) const {
     return typeTokens.count(type) > 0;
 }
 // Utility functions implementation
-bool Parser::isassaseingm(TypeToken type) const {
+bool Parser::isAssignmentOperator(TypeToken type) const {
     static const std::set<TypeToken> typeTokens = {
         TypeToken::OpAssign, TypeToken::OpDivideAssign,
         TypeToken::OpMinusAssign, TypeToken::OpMultiplyAssign,TypeToken::OpPlusAssign,
@@ -207,8 +206,6 @@ bool Parser::isTypeValueToken(TypeToken type) const {
     };
     return typeTokens.count(type) > 0;
 }
-
-
 
 int Parser::getOperatorPrecedence(TypeToken op) const {
     static const std::unordered_map<TypeToken, int> precedence = {

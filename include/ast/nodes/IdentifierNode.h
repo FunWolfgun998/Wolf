@@ -12,7 +12,7 @@ AST_NODE(IdentifierNode) {
     std::string name;
 
     public:
-    explicit IdentifierNode(std::string name) : name(std::move(name)) {}
+    IdentifierNode(std::string name) : name(std::move(name)) {}
 /*
     const std::string& getName() const { return name; }
 */

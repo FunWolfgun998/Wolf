@@ -7,11 +7,11 @@
 
 #include "ast/ASTNode.h"
 
-AST_NODE(IntLiteralNode) {
-    int value;
+AST_NODE(IntLiteralNode){
     public:
-    explicit IntLiteralNode(int value): value(value){}
-
+    IntLiteralNode(int value): value(value){}
+    private:
+    int value;
 };
 
 #endif //INTLITERALNODE_H

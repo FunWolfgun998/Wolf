@@ -98,6 +98,13 @@ build CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.obj: CXX_COMPILER__Wolf_unscann
   OBJECT_DIR = CMakeFiles\Wolf.dir
   OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast
 
+build CMakeFiles/Wolf.dir/src/ast/ASTNode.cpp.obj: CXX_COMPILER__Wolf_unscanned_Debug D$:/Wolf/Wolf/src/ast/ASTNode.cpp || cmake_object_order_depends_target_Wolf
+  DEP_FILE = CMakeFiles\Wolf.dir\src\ast\ASTNode.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -ID:/Wolf/Wolf/include
+  OBJECT_DIR = CMakeFiles\Wolf.dir
+  OBJECT_FILE_DIR = CMakeFiles\Wolf.dir\src\ast
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Wolf
@@ -106,7 +113,7 @@ build CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.obj: CXX_COMPILER__Wolf_unscann
 #############################################
 # Link the executable Wolf.exe
 
-build Wolf.exe: CXX_EXECUTABLE_LINKER__Wolf_Debug CMakeFiles/Wolf.dir/src/main.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.obj CMakeFiles/Wolf.dir/test/ast_tests.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Token.cpp.obj CMakeFiles/Wolf.dir/test/parser_tests.cpp.obj CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.obj
+build Wolf.exe: CXX_EXECUTABLE_LINKER__Wolf_Debug CMakeFiles/Wolf.dir/src/main.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.obj CMakeFiles/Wolf.dir/test/ast_tests.cpp.obj CMakeFiles/Wolf.dir/src/Parser/Token.cpp.obj CMakeFiles/Wolf.dir/test/parser_tests.cpp.obj CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.obj CMakeFiles/Wolf.dir/src/ast/ASTNode.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Wolf.dir
