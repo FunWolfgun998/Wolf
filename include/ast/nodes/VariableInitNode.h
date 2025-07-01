@@ -11,7 +11,7 @@ AST_NODE(VariableInitNode) {//int = 567
     std::string type;     // Type es. int, float, char,
     ASTNodePtr value;   // Value
     public:
-    VariableInitNode(std::string name,std::string type, ASTNodePtr value)
+    explicit VariableInitNode(std::string name,std::string type, ASTNodePtr value)
     : type(std::move(type)),name(std::move(name)),value(std::move(value)){}
 
     /*

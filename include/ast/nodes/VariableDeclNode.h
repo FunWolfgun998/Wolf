@@ -11,7 +11,7 @@ AST_NODE(VariableDeclNode) {
     std::string type;     // Type es. int, float, char,
 
     public:
-    VariableDeclNode(std::string name,std::string type)
+    explicit VariableDeclNode(std::string name,std::string type)
     : name(std::move(name)),type(std::move(type)){}
 
     /*

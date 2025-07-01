@@ -6,62 +6,61 @@
 
 // Include all necessary forward declarations
 #include "ASTNode.h"
-#define FORWARD_DECLARE(type) class type;
-FORWARD_DECLARE(ProgramNode)
-FORWARD_DECLARE(IntLiteralNode)
-FORWARD_DECLARE(FloatLiteralNode)
-FORWARD_DECLARE(StringLiteralNode)
-FORWARD_DECLARE(BoolLiteralNode)
-FORWARD_DECLARE(NullLiteralNode)
-FORWARD_DECLARE(IdentifierNode)
-FORWARD_DECLARE(BinaryExprNode)
-FORWARD_DECLARE(UnaryExprNode)
-FORWARD_DECLARE(AssignmentNode)
-FORWARD_DECLARE(VariableDeclNode)
-FORWARD_DECLARE(CompoundAssignmentNode)
-FORWARD_DECLARE(VariableInitNode)
-FORWARD_DECLARE(FunctionDeclNode)
-FORWARD_DECLARE(FunctionParamNode)
-FORWARD_DECLARE(ClassDeclNode)
-FORWARD_DECLARE(ClassPropertyNode)
-FORWARD_DECLARE(ClassMethodNode)
-FORWARD_DECLARE(CallExprNode)
-FORWARD_DECLARE(MethodCallNode)
-FORWARD_DECLARE(ArrayAccessNode)
-FORWARD_DECLARE(MemberAccessNode)
-FORWARD_DECLARE(NewExprNode)
-FORWARD_DECLARE(BlockNode)
-FORWARD_DECLARE(IfNode)
-FORWARD_DECLARE(ElseNode)
-FORWARD_DECLARE(ForNode)
-FORWARD_DECLARE(WhileNode)
-FORWARD_DECLARE(DoWhileNode)
-FORWARD_DECLARE(SwitchNode)
-FORWARD_DECLARE(CaseNode)
-FORWARD_DECLARE(ReturnNode)
-FORWARD_DECLARE(BreakNode)
-FORWARD_DECLARE(ContinueNode)
-FORWARD_DECLARE(ThrowNode)
-FORWARD_DECLARE(TryCatchNode)
-FORWARD_DECLARE(ImportNode)
-FORWARD_DECLARE(ExportNode)
-FORWARD_DECLARE(TypeAnnotationNode)
-FORWARD_DECLARE(TemplateDeclNode)
-FORWARD_DECLARE(GenericTypeNode)
-FORWARD_DECLARE(YieldNode)
-FORWARD_DECLARE(AwaitNode)
-FORWARD_DECLARE(CommentNode)
-FORWARD_DECLARE(DirectiveNode)
-#undef FORWARD_DECLARE
+class ProgramNode;
+class IntLiteralNode;
+class FloatLiteralNode;
+class StringLiteralNode;
+class CharLiteralNode;
+class BoolLiteralNode;
+class NullLiteralNode;
+class IdentifierNode;
+class BinaryExprNode;
+class UnaryExprNode;
+class AssignmentNode;
+class VariableDeclNode;
+class CompoundAssignmentNode;
+class VariableInitNode;
+class FunctionDeclNode;
+class FunctionParamNode;
+class ClassDeclNode;
+class ClassPropertyNode;
+class ClassMethodNode;
+class CallExprNode;
+class MethodCallNode;
+class ArrayAccessNode;
+class MemberAccessNode;
+class NewExprNode;
+class BlockNode;
+class IfNode;
+class ElseNode;
+class ForNode;
+class WhileNode;
+class DoWhileNode;
+class SwitchNode;
+class CaseNode;
+class ReturnNode;
+class BreakNode;
+class ContinueNode;
+class ThrowNode;
+class TryCatchNode;
+class ImportNode;
+class ExportNode;
+class TypeAnnotationNode;
+class TemplateDeclNode;
+class GenericTypeNode;
+class YieldNode;
+class AwaitNode;
+class CommentNode;
+class DirectiveNode;
+
 class ASTVisitor {
 public:
     virtual ~ASTVisitor() = default;
-
-    // Visitor methods for all AST node types
     virtual void visit(const ProgramNode&) = 0;
     virtual void visit(const IntLiteralNode&) = 0;
     virtual void visit(const FloatLiteralNode&) = 0;
     virtual void visit(const StringLiteralNode&) = 0;
+    virtual void visit(const CharLiteralNode&) = 0;
     virtual void visit(const BoolLiteralNode&) = 0;
     virtual void visit(const NullLiteralNode&) = 0;
     virtual void visit(const IdentifierNode&) = 0;

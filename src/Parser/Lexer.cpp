@@ -112,20 +112,19 @@ void Lexer::setIndentation() {
         else break;
         pos++;
     }
-
+    if (indent == lastIndent) return;
     if (indent > lastIndent) {
         while (lastIndent < indent) {
             lastIndent++;
             indentStack.push_back(lastIndent);
             pendingTokens.push(Token{TypeToken::Indent, ""});
         }
-    } else if (indent < lastIndent) {
-        while (!indentStack.empty() && indentStack.back() > indent) {
-            indentStack.pop_back();
-            pendingTokens.push(Token{TypeToken::Dedent, ""});
-        }
+        return;
     }
-
+    while (!indentStack.empty() && indentStack.back() > indent) {
+        indentStack.pop_back();
+        pendingTokens.push(Token{TypeToken::Dedent, ""});
+    }
 }
 
 Token Lexer::getNumber() {

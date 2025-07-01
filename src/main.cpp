@@ -35,16 +35,14 @@ int main(int argc, char* argv[]) {
             std::cout << "Type: " << static_cast<int>(token.type)
                       << ", Value: '" << token.value << "'" << std::endl;
         }
-        std::cout << "Done Token";/*
+        std::cout << "Done Token";
         // 3. Parsing
         Parser parser(tokens);
         auto ast = parser.ParseTokens();
 
         // 4. Stampa l'AST
         std::cout << "\n=== Abstract Syntax Tree ===" << std::endl;
-        ASTPrinter printer(std::cout);
-        ast->accept(printer);
-*/
+
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;

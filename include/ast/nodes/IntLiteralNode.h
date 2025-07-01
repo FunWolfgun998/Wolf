@@ -9,7 +9,7 @@
 
 AST_NODE(IntLiteralNode){
     public:
-    IntLiteralNode(int value): value(value){}
+    explicit IntLiteralNode(int value): value(value){}
     private:
     int value;
 };

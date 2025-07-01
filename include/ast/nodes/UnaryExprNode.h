@@ -13,7 +13,7 @@ AST_NODE(UnaryExprNode) {
     ASTNodePtr operand;   // The expression to which the operator applies
 
     public:
-    UnaryExprNode(std::string op, ASTNodePtr operand)
+    explicit UnaryExprNode(std::string op, ASTNodePtr operand)
         : op(std::move(op)), operand(std::move(operand)) {}
 
     /*
