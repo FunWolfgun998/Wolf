@@ -10,6 +10,8 @@ AST_NODE(FloatLiteralNode) {
     float value;
     public:
     explicit FloatLiteralNode(float value): value(value){}
+    const float getValue() const { return value; }
+
     
 };
 

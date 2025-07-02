@@ -306,8 +306,6 @@ Token Lexer::getIdentifierOrKeyword() {
 
     auto it = keywords.find(word);
     if (it != keywords.end()) {
-        std::cout << "" << std::endl;
-        std::cout << word << std::endl;
         return Token{it->second, word};
     } else {
         return Token{TypeToken::Identifier, word};
@@ -315,7 +313,7 @@ Token Lexer::getIdentifierOrKeyword() {
 }
 
 bool Lexer::isOperatorStart(char c) const {
-    static const std::string operatorChars = "=+-*/%&|<>!~^()";
+    static const std::string operatorChars = "=+-*/%&|<>!~^():!";
     return operatorChars.find(c) != std::string::npos;
 }
 
@@ -370,6 +368,9 @@ Token Lexer::getOperator() {
         {'>', TypeToken::OpGreater},
         {'(', TypeToken::LeftParen},
         {')', TypeToken::RightParen},
+        {':', TypeToken::Colon},
+        {'!', TypeToken::OpNot},
+
 
     };
 
@@ -380,6 +381,7 @@ Token Lexer::getOperator() {
 
     return Token{TypeToken::Unknown, std::string(1, first)};
 }
+
 void Lexer::skipWhitespace() {
     while (pos < input.size() && input[pos] == ' ') {
         pos++;

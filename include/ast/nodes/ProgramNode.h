@@ -16,6 +16,9 @@ AST_NODE(ProgramNode) {
      */
     explicit ProgramNode(std::vector<ASTNodePtr> statements)
         : statements(std::move(statements)) {}
+    const std::vector<ASTNodePtr>& getStatements() const { return statements; }
+
+
 };
 
 #endif //PROGRAMNODE_H

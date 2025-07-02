@@ -1,4 +1,7 @@
 #include "parser/Parser.h"
+
+#include <iostream>
+
 #include "ast/nodes/AllNodes.h"
 #include <set>
 
@@ -57,15 +60,17 @@ void Parser::peek(TypeToken type, const std::string& errorMsg) {
 
 ASTNodePtr Parser::parseStatement() {
     consumeNewlines();
-    if (isTypeToken(currentToken().type)) {
+    if (isTypeToken(currentToken().type)) {//int,string,float,char
         return parseDeclaration();
     }
     if (Is(TypeToken::Identifier)) {
-        if(IsNext(TypeToken::OpAssign)) {
+        if(isAssignmentOperator(tokens[pos+1].type)) {
             return parseAssignment();
         }
     }
     // Aggiungi qui altri tipi di statement...
+    std::cout << currentToken().value<< std::endl;
+    std::cout << static_cast<int>(currentToken().type)<< std::endl;
 
     throw ParseError("Unexpected token at statement start");
 }
@@ -103,7 +108,9 @@ ASTNodePtr Parser::parseAssignment() {
     if (!isAssignmentOperator(currentToken().type)) {
         ParseError("Expected assignment sign");
     }
-    TypeToken typeofsign = consumeToken().type;
+    std::string typeofsign = consumeToken().value;
+    std::cout << static_cast<int>(tokens[pos].type)<< std::endl;
+
         auto initValue = parseExpression();
 
         if (!isEndOfStatement()) {
@@ -152,7 +159,8 @@ ASTNodePtr Parser::parsePrimary() {
         return expr;
     }
 
-    throw ParseError("Unexpected token in expression: " + currentToken().value);
+    std::cout << static_cast<int>(tokens[pos-1].type)<< std::endl;
+    throw ParseError("Unexpected token in expression: " + static_cast<int>(tokens[pos-1].type));
 }
 
 ASTNodePtr Parser::parseBinaryOp(ASTNodePtr left, int minPrecedence) {
@@ -194,7 +202,8 @@ bool Parser::isTypeToken(TypeToken type) const {
 bool Parser::isAssignmentOperator(TypeToken type) const {
     static const std::set<TypeToken> typeTokens = {
         TypeToken::OpAssign, TypeToken::OpDivideAssign,
-        TypeToken::OpMinusAssign, TypeToken::OpMultiplyAssign,TypeToken::OpPlusAssign,
+        TypeToken::OpMinusAssign, TypeToken::OpMultiplyAssign,
+        TypeToken::OpPlusAssign,
     };
     return typeTokens.count(type) > 0;
 }

@@ -11,6 +11,8 @@ AST_NODE(StringLiteralNode) {
     std::string value;
     public:
     explicit StringLiteralNode(std::string value): value(std::move(value)){}
+    const std::string getValue() const { return value; }
+
 
 };
 

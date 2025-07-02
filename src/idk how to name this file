@@ -1,0 +1,107 @@
+Project created by Personal on 10/05/2025.
+
+0   Int,
+1   Float,
+2   Char,
+3   String,
+4   IntValue,
+5   FloatValue,
+6   CharValue,
+7 StringValue,
+8   If,
+9   Else,
+10  Elif,
+11  While,
+12  For,
+13  Return,
+14  Break,
+15  Continue,
+16  True,
+17  False,
+18  Func,
+19  Indent,
+20  Dedent,
+21  Newline,
+22  End,
+23  LeftParen,
+24  RightParen,
+25  Colon,
+26  OpAssign,       // =
+27  OpPlus,         // +
+28  OpMinus,        // -
+29  OpMultiply,     // *
+30  OpDivide,       // /
+31  OpModulo,       // %
+32  OpEqual,        // ==
+33  OpNotEqual,     // !=
+34  OpLess,         // <
+35  OpLessEqual,    // <=
+36  OpGreater,      // >
+37  OpGreaterEqual, // >=
+38  OpAnd,          // &&
+39  OpOr,           // ||
+40  OpNot,          // !
+41  OpPlusAssign,   // +=
+42  OpMinusAssign,  // -=
+43  OpMultiplyAssign, // *=
+44  OpDivideAssign, // /=
+45  OpModuloAssign, // %=
+46  OpShiftLeft,// <<
+47  OpShiftRight,// >>
+48  Comment,
+49  Identifier,
+50  Unknown
+
+int float char string 56 67.8 'd' "fgd" if else elif while for return break continue true false func
+
+() : = + - * / % == != < <= > >= && || ! += -= *= /= %= << >> //hello
+ghj ;
+
+=== Tokens ===
+Type: 0, Value: 'int'
+Type: 1, Value: 'float'
+Type: 2, Value: 'char'
+Type: 3, Value: 'string'
+Type: 4, Value: '56'
+Type: 5, Value: '67.8'
+Type: 6, Value: 'd'
+Type: 7, Value: 'fgd'
+Type: 8, Value: 'if'
+Type: 9, Value: 'else'
+Type: 10, Value: 'elif'
+Type: 11, Value: 'while'
+Type: 12, Value: 'for'
+Type: 13, Value: 'return'
+Type: 14, Value: 'break'
+Type: 15, Value: 'continue'
+Type: 16, Value: 'true'
+Type: 17, Value: 'false'
+Type: 18, Value: 'func'
+Type: 23, Value: '('
+Type: 24, Value: ')'
+Type: 25, Value: ':'
+Type: 26, Value: '='
+Type: 27, Value: '+'
+Type: 28, Value: '-'
+Type: 29, Value: '*'
+Type: 30, Value: '/'
+Type: 31, Value: '%'
+Type: 32, Value: '=='
+Type: 33, Value: '!='
+Type: 34, Value: '<'
+Type: 35, Value: '<='
+Type: 36, Value: '>'
+Type: 37, Value: '>='
+Type: 38, Value: '&&'
+Type: 39, Value: '||'
+Type: 40, Value: '!'
+Type: 41, Value: '+='
+Type: 42, Value: '-='
+Type: 43, Value: '*='
+Type: 44, Value: '/='
+Type: 45, Value: '%='
+Type: 46, Value: '<<'
+Type: 47, Value: '>>'
+Type: 48, Value: '//hello'
+Type: 49, Value: 'ghj'
+Type: 50, Value: ';'

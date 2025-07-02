@@ -10,6 +10,8 @@ AST_NODE(CharLiteralNode) {
     char value;
     public:
     explicit CharLiteralNode(char value): value(value){}
+    const char getValue() const { return value; }
+
 
 };
 #endif //CHARLITERALNODE_H

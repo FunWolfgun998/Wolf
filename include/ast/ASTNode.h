@@ -163,22 +163,6 @@ using ASTNodeVariant = std::variant<
     DirectiveNode*
 >;
 
-namespace AST {
-    template <typename T, typename... Args>
-    std::unique_ptr<T> make_node(Args&&... args) {
-        static_assert(std::is_base_of_v<ASTNodeBase, T>,
-            "Type must inherit from ASTNodeBase");
-        return std::make_unique<T>(std::forward<Args>(args)...);
-    }
-
-    template <typename T, typename... Args>
-    ASTNodeVariant make_variant_node(Args&&... args) {
-        static_assert(std::is_base_of_v<ASTNodeBase, T>,
-            "Type must inherit from ASTNodeBase");
-        return new T(std::forward<Args>(args)...);
-    }
-}
-
 // Now define ASTNode template after all forward declarations
 template <typename Derived>
 class ASTNode : public ASTNodeBase {

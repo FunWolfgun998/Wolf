@@ -9,7 +9,6 @@ enum class TypeToken {
     Float,
     Char,
     String,
-
     // Value
     IntValue,
     FloatValue,
@@ -81,8 +80,8 @@ enum class TypeToken {
 struct Token {
     TypeToken type;
     std::string value;
-    size_t line;    // Aggiungi questo
-    size_t column;  // Aggiungi questo
+    size_t line;
+    size_t column;
 
     // Costruttore
     Token(TypeToken t, std::string val, size_t ln = 0, size_t col = 0)

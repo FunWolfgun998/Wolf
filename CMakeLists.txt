@@ -12,8 +12,6 @@ add_executable(Wolf
         include/parser/parser.h
         include/parser/Lexer.h
         include/ast/ast.h
-        include/utils/Diagnostics.h
-        include/utils/resources.h
         include/ast/ASTVisitor.h
         test/ast_tests.cpp
         include/parser/Token.h

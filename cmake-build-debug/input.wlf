@@ -1,6 +1,3 @@
-int cv = 1*(3+5)/678
-cv = 68768
-string ipipi = "utgwdyhqwf\ndhqwfgdh\tjhsdgjghfsjhgfjs" + 't'
-char v = 'y'
-int i = 6
-i = 67
+int i = 77
+int y
+y += 78

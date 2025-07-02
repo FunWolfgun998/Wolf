@@ -14,10 +14,8 @@ AST_NODE(VariableDeclNode) {
     explicit VariableDeclNode(std::string name,std::string type)
     : name(std::move(name)),type(std::move(type)){}
 
-    /*
     const std::string& getName() const { return name; }
-    const TypeAnnotation& getType() const { return *type; }
-    bool isConstant() const { return isConst; }
-    */
+    const std::string& getType() const { return type; }
+
 };
 #endif //VARIABLEDECLNODE_H

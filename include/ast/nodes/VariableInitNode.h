@@ -14,10 +14,9 @@ AST_NODE(VariableInitNode) {//int = 567
     explicit VariableInitNode(std::string name,std::string type, ASTNodePtr value)
     : type(std::move(type)),name(std::move(name)),value(std::move(value)){}
 
-    /*
     const std::string& getName() const { return name; }
-    const TypeAnnotation& getType() const { return *type; }
-    bool isConstant() const { return isConst; }
-    */
+    const std::string& getType() const { return type; }
+    const ASTNodePtr& getValue() const { return value; }
+
 };
 #endif //VARIABLEINITNODE_H

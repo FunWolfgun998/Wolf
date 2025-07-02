@@ -15,6 +15,8 @@ AST_NODE(UnaryExprNode) {
     public:
     explicit UnaryExprNode(std::string op, ASTNodePtr operand)
         : op(std::move(op)), operand(std::move(operand)) {}
+    const std::string getOp() const { return op; }
+    const ASTNodePtr& getOperand() const { return operand; }
 
     /*
     const std::string& getOp() const { return op; }

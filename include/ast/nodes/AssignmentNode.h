@@ -9,17 +9,16 @@
 AST_NODE(AssignmentNode) {
     std::string target;    // L-value (normally IdentifierNode or MemberAccessNode)
     ASTNodePtr value;     // R-value (expression to assign)
-    TypeToken op;       // Operator ("=", "+=", "-=", etc.)
+    std::string op;       // Operator ("=", "+=", "-=", etc.)
 
     public:
-    AssignmentNode(std::string target, TypeToken op, ASTNodePtr value)
+    AssignmentNode(std::string target, std::string op, ASTNodePtr value)
         : target(std::move(target)), op(op), value(std::move(value)) {}
 
-    /*
-    const ASTNode& getTarget() const { return *target; }
-    const std::string& getOperator() const { return op; }
-    const ASTNode& getValue() const { return *value; }
-    */
+    const std::string getTarget() const { return target; }
+    const std::string getOp() const { return op; }
+    const ASTNodePtr& getValue() const { return value; }
+
 };
 
 #endif //ASSIGNMENTNODE_H

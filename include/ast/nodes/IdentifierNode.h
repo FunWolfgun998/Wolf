@@ -9,13 +9,13 @@
 #include <string>
 
 AST_NODE(IdentifierNode) {
-    std::string name;
+    std::string value;
 
     public:
-    explicit IdentifierNode(std::string name) : name(std::move(name)) {}
-/*
-    const std::string& getName() const { return name; }
-*/
+    explicit IdentifierNode(std::string name) : value(std::move(name)) {}
+    const std::string getValue() const { return value; }
+
+
 };
 
 #endif //IDENTIFIERNODE_H

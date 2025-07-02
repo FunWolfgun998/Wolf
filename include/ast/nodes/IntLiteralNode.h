@@ -10,6 +10,8 @@
 AST_NODE(IntLiteralNode){
     public:
     explicit IntLiteralNode(int value): value(value){}
+    const int getValue() const { return value; }
+
     private:
     int value;
 };
