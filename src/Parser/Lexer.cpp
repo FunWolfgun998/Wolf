@@ -117,13 +117,13 @@ void Lexer::setIndentation() {
         while (lastIndent < indent) {
             lastIndent++;
             indentStack.push_back(lastIndent);
-            pendingTokens.push(Token{TypeToken::Indent, ""});
+            pendingTokens.push(Token{TypeToken::Indent,  std::to_string(indent)});
         }
         return;
     }
     while (!indentStack.empty() && indentStack.back() > indent) {
         indentStack.pop_back();
-        pendingTokens.push(Token{TypeToken::Dedent, ""});
+        pendingTokens.push(Token{TypeToken::Dedent,  std::to_string(indent)});
     }
 }
 

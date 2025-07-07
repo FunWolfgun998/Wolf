@@ -1,3 +1,16 @@
-int i = 77
-int y
-y += 78
+int i = 678
+float f = 7
+
+if(f):
+    int o
+    int i = 89
+elif(h):
+    float a
+    a -= 78
+elif(z):
+    float a
+    a -= 78
+else:
+    char i
+    i+="jythj"
+

@@ -15,10 +15,9 @@ AST_NODE(BinaryExprNode){
     ASTNodePtr  right;
     public:
     //I create the constructor to generate the node with the arguments that I need
-    explicit BinaryExprNode( ASTNodePtr left,
-                    std::string op,
-                    ASTNodePtr right):
+    explicit BinaryExprNode( ASTNodePtr left, std::string op, ASTNodePtr right):
         left(std::move(left)),op(std::move(op)),right(std::move(right)){}
+
     //the syntax constructor (input1,input2...): var1(what to save in var1 ex. std::move(input1),var2()...{}
     const std::string getOp() const { return op; }
     const ASTNodePtr& getLeft() const { return left; }

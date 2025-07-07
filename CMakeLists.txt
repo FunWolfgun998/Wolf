@@ -35,6 +35,8 @@ add_executable(Wolf
         include/ast/nodes/VariableInitNode.h
         include/ast/nodes/CharLiteralNode.h
         src/ast/ASTNode.cpp
+        include/ast/nodes/IfNode.h
+        include/ast/nodes/BlockNode.h
 )
 
 # Includi i file header

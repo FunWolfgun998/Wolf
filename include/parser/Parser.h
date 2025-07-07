@@ -29,11 +29,11 @@ private:
     void peek(TypeToken type, const std::string& errorMsg);
 
     // Parsing methods
-    ASTNodePtr parseProgram();
-    ASTNodePtr parseBlock();
     ASTNodePtr parseStatement();
     ASTNodePtr parseDeclaration();
     ASTNodePtr parseAssignment();
+    ASTNodePtr parseIf();
+    ASTNodePtr parseBlock();
     ASTNodePtr parseExpression();
     ASTNodePtr parsePrimary();
     ASTNodePtr parseBinaryOp(ASTNodePtr left, int minPrecedence);

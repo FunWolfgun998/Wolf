@@ -54,8 +54,7 @@ Project created by Personal on 10/05/2025.
 
 int float char string 56 67.8 'd' "fgd" if else elif while for return break continue true false func
 
-() : = + - * / % == != < <= > >= && || ! += -= *= /= %= << >> //hello
-ghj ;
+() : = + - * / % == != < <= > >= && || ! += -= *= /= %= << >> /*hello*/ ghj ;
 
 === Tokens ===
 Type: 0, Value: 'int'
@@ -105,3 +104,10 @@ Type: 47, Value: '>>'
 Type: 48, Value: '//hello'
 Type: 49, Value: 'ghj'
 Type: 50, Value: ';'
+
+function
+if
+else
+return
+array
+classi

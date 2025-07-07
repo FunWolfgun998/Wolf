@@ -19,5 +19,8 @@
 #include "ast/nodes/UnaryExprNode.h"
 #include "ast/nodes/VariableDeclNode.h"
 #include "ast/nodes/VariableInitNode.h"
+#include "ast/nodes/IfNode.h"
+#include "ast/nodes/ElseNode.h"
+#include "ast/nodes/BlockNode.h"
 
 #endif //ALLNODES_H
