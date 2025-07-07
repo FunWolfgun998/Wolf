@@ -102,7 +102,33 @@ void ASTPrinter::visit(const AssignmentNode& node) {
     node.getValue()->accept(*this);
     indentLevel--;
 }
+void ASTPrinter::visit(const IfNode& node) {
+    printIndent();
+    out << "If:\n";
+    indentLevel++;
 
+    printIndent();
+    out << "├─ Condition:\n";
+    indentLevel++;
+    node.condition->accept(*this);
+    indentLevel--;
+
+    printIndent();
+    out << "├─ Then:\n";
+    indentLevel++;
+    node.thenBlock->accept(*this);
+    indentLevel--;
+
+    if (node.elseBlock) {
+        printIndent();
+        out << "└─ Else:\n";
+        indentLevel++;
+        node.elseBlock->accept(*this);
+        indentLevel--;
+    }
+
+    indentLevel--;
+}
 void ASTPrinter::visit(const VariableDeclNode& node) {
     Print("VariableDecl", node.getName(), node.getType());
 }

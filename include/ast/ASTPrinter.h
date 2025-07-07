@@ -27,6 +27,8 @@ public:
     void visit(const AssignmentNode& node) override;
     void visit(const VariableDeclNode& node) override;
     void visit(const VariableInitNode& node) override;
+    void visit(const IfNode &) override;
+    void visit(const ElseNode &) override;
     /*
     void visit(const CompoundAssignmentNode& node) override;
     void visit(const FunctionDeclNode& node) override;
