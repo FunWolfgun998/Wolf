@@ -37,6 +37,7 @@ add_executable(Wolf
         src/ast/ASTNode.cpp
         include/ast/nodes/IfNode.h
         include/ast/nodes/BlockNode.h
+        include/parser/StateToken.h
 )
 
 # Includi i file header

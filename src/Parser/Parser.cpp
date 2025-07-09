@@ -20,7 +20,9 @@ ASTNodePtr Parser::ParseTokens() {
 
     while (!Is(TypeToken::End)) {
         consumeNewlines();
-        statements.push_back(parseStatement());
+        if (auto stmt = parseStatement()) {  // Controlla nullptr
+            statements.push_back(std::move(stmt));
+        }
     }
 
     return std::make_unique<ProgramNode>(std::move(statements));
@@ -38,6 +40,8 @@ const Token& Parser::currentToken() const {
 }
 
 const Token& Parser::consumeToken() {
+            std::cout << "Type: " << static_cast<int>(currentToken().type)
+                      << ", Value: '" << currentToken().value << "'" << std::endl;
     return tokens[pos++];
 }
 
@@ -74,6 +78,9 @@ ASTNodePtr Parser::parseStatement() {
     }
     if (Is(TypeToken::If)) {
         return parseIf();
+    }
+    if (Is(TypeToken::End)) {
+
     }
     /* need to manage if al lots of indent with no code or if code
     if (currentToken().type == TypeToken::Indent) {
@@ -123,7 +130,6 @@ ASTNodePtr Parser::parseAssignment() {
         ParseError("Expected assignment sign");
     }
     std::string typeofsign = consumeToken().value;
-    std::cout << static_cast<int>(tokens[pos].type)<< std::endl;
 
         auto initValue = parseExpression();
 
@@ -134,7 +140,6 @@ ASTNodePtr Parser::parseAssignment() {
 
         return std::make_unique<AssignmentNode>(Identifier,typeofsign, std::move(initValue));
 }
-
 ASTNodePtr Parser::parseIf() {
     expect(TypeToken::If, "Expected 'if'");
     expect(TypeToken::LeftParen, "Expected '(' after 'if'");
@@ -146,12 +151,10 @@ ASTNodePtr Parser::parseIf() {
 
     auto thenBlock = parseBlock();
 
-    // Gestione elif/else
-    ASTNodePtr elseBlock = nullptr;
-    consumeNewlines();
+    std::vector<std::pair<ASTNodePtr, ASTNodePtr>> elifConditionsAndBlocks;  // Memorizza (condizione, blocco)
 
     while (Is(TypeToken::Elif)) {
-        consumeToken();  // Consuma 'elif'
+        consumeToken();
         expect(TypeToken::LeftParen, "Expected '(' after 'elif'");
         auto elifCondition = parseExpression();
         expect(TypeToken::RightParen, "Expected ')' after condition");
@@ -160,10 +163,12 @@ ASTNodePtr Parser::parseIf() {
         expect(TypeToken::Indent, "Expected indentation");
 
         auto elifBlock = parseBlock();
-        elseBlock = std::make_unique<IfNode>(std::move(elifCondition), std::move(elifBlock), std::move(elseBlock));
+        elifConditionsAndBlocks.emplace_back(std::move(elifCondition), std::move(elifBlock));
         consumeNewlines();
     }
 
+    // Costruisci la catena di elif in ordine inverso
+    ASTNodePtr elseBlock = nullptr;
     if (Is(TypeToken::Else)) {
         consumeToken();  // Consuma 'else'
         expect(TypeToken::Colon, "Expected ':' after 'else'");
@@ -174,16 +179,26 @@ ASTNodePtr Parser::parseIf() {
         elseBlock = std::make_unique<ElseNode>(std::move(elseBlockContent));
     }
 
+    // Aggiungi gli elif in ordine inverso (per mantenere l'ordine corretto)
+    for (auto it = elifConditionsAndBlocks.rbegin(); it != elifConditionsAndBlocks.rend(); ++it) {
+        elseBlock = std::make_unique<IfNode>(std::move(it->first), std::move(it->second), std::move(elseBlock),true);
+
+    }
+
     return std::make_unique<IfNode>(std::move(condition), std::move(thenBlock), std::move(elseBlock));
 }
 
 ASTNodePtr Parser::parseBlock() {
         std::vector<ASTNodePtr> statements;
 
-    while (currentToken().type != TypeToken::Dedent) {
+    while (currentToken().type != TypeToken::Dedent && !Is(TypeToken::End)) {
         consumeNewlines();
-        statements.push_back(parseStatement());
+        if (auto stmt = parseStatement()) {  // Controlla nullptr
+            statements.push_back(std::move(stmt));
+        }
     }
+
+    std::cout << "Done block "<< std::endl;
     consumeToken();
     return std::make_unique<BlockNode>(std::move(statements));
 }

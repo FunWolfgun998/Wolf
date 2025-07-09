@@ -104,35 +104,43 @@ void ASTPrinter::visit(const AssignmentNode& node) {
 }
 void ASTPrinter::visit(const IfNode& node) {
     printIndent();
-    out << "If:\n";
+    out << (node.getIsElif() ? "Elif" : "If") << ":\n";  // Differenzia If/Elif
     indentLevel++;
 
+    // Stampa condizione
     printIndent();
-    out << "├─ Condition:\n";
+    out << "Condition:\n";
     indentLevel++;
-    node.condition->accept(*this);
+    node.getCondition()->accept(*this);
     indentLevel--;
 
+    // Stampa blocco THEN
     printIndent();
-    out << "├─ Then:\n";
+    out << "Then:\n";
     indentLevel++;
-    node.thenBlock->accept(*this);
-    indentLevel--;
+    node.getThenBlock()->accept(*this);
+    indentLevel-=2;
 
-    if (node.elseBlock) {
-        printIndent();
-        out << "└─ Else:\n";
-        indentLevel++;
-        node.elseBlock->accept(*this);
-        indentLevel--;
+    // Gestione elif/else - MODIFICA CHIAVE
+    if (const ASTNodeBase* elseBlock = node.getElseBlock().get()) {
+        elseBlock->accept(*this);
     }
+    indentLevel--;
+}
 
+void ASTPrinter::visit(const ElseNode& node) {
+    printIndent();
+    out << "Else:\n";  // Cambiato da ElseBlock a Else per consistenza
+    indentLevel++;
+    node.getBlock()->accept(*this);
     indentLevel--;
 }
 void ASTPrinter::visit(const VariableDeclNode& node) {
     Print("VariableDecl", node.getName(), node.getType());
 }
-
+void ASTPrinter::visit(const BlockNode& node) {
+    Print("Block", node.getStatements());  // Stampa "Block:" e poi tutti gli statement
+}
 void ASTPrinter::visit(const VariableInitNode& node) {
     printIndent();
     out << "VariableInit: " << node.getName();

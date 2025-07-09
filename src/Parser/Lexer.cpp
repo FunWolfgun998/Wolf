@@ -4,6 +4,78 @@
 #include <bits/ostream.tcc>
 
 #include "parser/Token.h"
+#include "parser/StateToken.h"
+//
+// Lexer::Lexer(std::string input)
+//     : input(std::move(input)), pos(0), indentStack({0}), atLineStart(true) {}
+// std::vector<Token> Lexer::getAllTokens() {
+//
+// }
+// void Lexer::CreateToken() {
+//     currentState = StateToken::Neutral;
+//     if (!(pos < input.size())) {
+//         Tokens.push_back(Token{TypeToken::End, "EOF"});
+//     }
+//     if(currentChar()== '\n') {
+//         Tokens.push_back(Token{TypeToken::Newline, "\\n"});
+//         consumeChar();
+//     }
+//     if(currentChar() == '/') {
+//         currentState = StateToken::OpDivide;
+//         consumeChar();
+//         if(currentChar() == '/') {
+//             currentState = StateToken::Comment;
+//             consumeChar();
+//             size_t start = pos;
+//             while (pos < input.size() && input[pos] != '\n') {
+//                 pos++;
+//             }
+//             std::string comment = input.substr(start, pos - start);
+//             Tokens.push_back(Token{TypeToken::Comment, comment});
+//             currentState = StateToken::Neutral;
+//         }else if (currentChar() == '*') {
+//             currentState = StateToken::Comment;
+//             consumeChar();
+//             size_t start = pos;
+//             while (pos + 1 < input.size()) {
+//                 if (input[pos] == '*' && input[pos + 1] == '/') {
+//                     std::string comment = input.substr(start, pos - start);
+//                     Tokens.push_back( Token{TypeToken::Comment, comment});
+//                     pos += 2;
+//                     break;
+//                 }
+//                 pos++;
+//             }
+//             pos++;
+//             std::string comment = input.substr(start, pos - start);
+//             Tokens.push_back( Token{TypeToken::Comment, comment});
+//             currentState = StateToken::Neutral;
+//         }else if (currentChar() == '=') {
+//             currentState = StateToken::OpDivideAssign;
+//             consumeChar();
+//             Tokens.push_back(Token{TypeToken::OpDivideAssign, "/="});
+//             currentState = StateToken::Neutral;
+//         }else {
+//             Tokens.push_back(Token{TypeToken::OpDivide, "/"});
+//             currentState = StateToken::Neutral;
+//         }
+//     if (std::isalpha(currentChar() )) {
+//         size_t start = pos;
+//         consumeChar();
+//         while (pos < input.size() && (std::isalnum(input[pos]) || input[pos] == '_'||)) {
+//             pos++;
+//         }
+//     }
+//     }
+// }
+//
+// char Lexer::currentChar() const{
+// return input[pos];
+// }
+// char Lexer::consumeChar(){
+//     return input[pos++];
+// }
+
 
 const std::unordered_map<std::string, TypeToken> Lexer::keywords = {
     {"int", TypeToken::Int},
@@ -266,7 +338,7 @@ Token Lexer::getString() {
 Token Lexer::getComment() {
     if (input[pos] == '/' && pos + 1 < input.size()) {
         if (input[pos + 1] == '/') {
-            /* Sigle line comment - stops at \n (new line) */
+            /* Sigle line comment - stops at \n (new line)*/
             size_t start = pos;
             pos += 2;
             while (pos < input.size() && input[pos] != '\n') {

@@ -28,6 +28,7 @@ private:
     void expect(TypeToken type, const std::string& errorMsg);
     void peek(TypeToken type, const std::string& errorMsg);
 
+
     // Parsing methods
     ASTNodePtr parseStatement();
     ASTNodePtr parseDeclaration();

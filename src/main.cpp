@@ -17,6 +17,16 @@ std::string readFile(const std::string& filePath) {
     return buffer.str();
 }
 
+void printWithVisibleTabs(const std::string& str) {
+    for (char c : str) {
+        if (c == '\t') {
+            std::cout << "\\t";  // Stampa \t invece della tabulazione
+        } else {
+            std::cout << c;
+        }
+    }
+}
+
 int main(int argc, char* argv[]) {
     try {
         // 1. Leggi il file di input
@@ -33,7 +43,9 @@ int main(int argc, char* argv[]) {
         std::cout << "\n=== Tokens ===" << std::endl;
         for (const auto& token : tokens) {
             std::cout << "Type: " << static_cast<int>(token.type)
-                      << ", Value: '" << token.value << "'" << std::endl;
+                      << ", Value: '";
+            printWithVisibleTabs(token.value);
+            std::cout <<"'" << std::endl;;
         }
         std::cout << "Done Token"<< std::endl;
         std::cout << "\n=== Abstract Syntax Tree ===" << std::endl;

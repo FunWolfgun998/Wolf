@@ -1,16 +1,17 @@
-int i = 678
-float f = 7
 
-if(f):
+int i=678
+float f=7
+
+if(1):
     int o
     int i = 89
-elif(h):
+elif(2):
     float a
     a -= 78
-elif(z):
-    float a
-    a -= 78
+    if(67):
+        x = 67
+
 else:
-    char i
-    i+="jythj"
+    float z
+    z*=67
 
