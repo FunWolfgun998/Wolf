@@ -20,13 +20,28 @@ public:
 private:
     std::string input;
     size_t pos = 0;
-    std::queue<Token> pendingTokens;
     std::vector<int> indentStack;
     std::vector<Token> Tokens;
     StateToken currentState;
 
     bool atLineStart = true;
-    static const std::unordered_map<std::string, TypeToken> keywords;
+    static inline const std::unordered_map<std::string, TypeToken> keywords = {
+        {"int", TypeToken::Int},
+        {"float", TypeToken::Float},
+        {"char", TypeToken::Char},
+        {"string", TypeToken::String},
+        {"if", TypeToken::If},
+        {"else", TypeToken::Else},
+        {"elif", TypeToken::Elif},
+        {"while", TypeToken::While},
+        {"for", TypeToken::For},
+        {"return", TypeToken::Return},
+        {"break", TypeToken::Break},
+        {"continue", TypeToken::Continue},
+        {"func", TypeToken::Func},
+        {"true", TypeToken::True},
+        {"false", TypeToken::False},
+    };
 
     void skipWhitespace();
     void setIndentation();

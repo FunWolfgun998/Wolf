@@ -32,8 +32,7 @@ enum class StateToken {
     Func,
 
     // Structure
-    Indent,
-    Dedent,
+    Indentation,
     Newline,
     End,
     LeftParen,
@@ -73,7 +72,8 @@ enum class StateToken {
     OpShiftRight,// >>
 
     // Other
-    Comment,
+    SigleLineComment,
+    MultiLineComment,
     Identifier,
     Unknown,
     Neutral
