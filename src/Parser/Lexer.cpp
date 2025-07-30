@@ -268,43 +268,7 @@ return input[pos];
 char Lexer::consumeChar(){
     return input[pos++];
 }
-Token Lexer::getNumber() {
-    size_t start = pos;
-    bool hasDot = false;
-    bool hasExponent = false;
-    bool foundDigit = false;
 
-    while (pos < input.size()) {
-        char c = input[pos];
-
-        if (isdigit(c)) {
-            foundDigit = true;
-            pos++;
-        }
-        else if (c == '.' && !hasDot && !hasExponent) {
-            hasDot = true;
-            pos++;
-
-            if (pos >= input.size() || !isdigit(input[pos])) {
-                return Token{TypeToken::Unknown, input.substr(start, pos - start)};
-            }
-        }
-        else if ((c == 'e' || c == 'E') && !hasExponent && foundDigit) {
-            hasExponent = true;
-            pos++;
-
-            if (input[pos] == '+' || input[pos] == '-') {
-                pos++;
-            }
-
-            if (pos >= input.size() || !isdigit(input[pos])) {
-                return Token{TypeToken::Unknown, input.substr(start, pos - start)};
-            }
-        }
-        else {
-            break;
-        }
-    }
 // OLD VERSION
 // const std::unordered_map<std::string, TypeToken> Lexer::keywords = {
 //     {"int", TypeToken::Int},
