@@ -11,8 +11,8 @@ enum class StateToken {
     Char,
     String,
     // Value
-    IntValue,
-    FloatValue,
+    Number,
+    FloatNumber,
     CharValue,
     StringValue,
 

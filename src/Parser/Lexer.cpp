@@ -57,7 +57,13 @@ void Lexer::CreateToken() {
                 currentState = StateToken::Identifier;
                 break;
             }
-            if (currentChar() == '=') {}
+            if (std::isdigit(currentChar())||currentChar() == '.') {
+                currentState = StateToken::Number;
+                break;
+            }
+            if (currentChar() == '=') {
+
+            }
 
         }
         case StateToken::Indentation: {
@@ -160,6 +166,70 @@ void Lexer::CreateToken() {
                 Tokens.emplace_back(TypeToken::Identifier, word);
             }
         }
+        case StateToken::Number: {
+            std::string buffer;
+            bool isFloat = false;
+            size_t start_pos = pos;  // For error reporting
+
+            auto fail = [&]() {  // Lambda function. helper for error cases
+                Tokens.emplace_back(TypeToken::Unknown, input.substr(start_pos, pos - start_pos));
+                currentState = StateToken::Neutral;
+            };
+
+            // Parse integer part (optional)
+            while (pos < input.size() && isdigit(input[pos])) {
+                buffer += input[pos++];
+            }
+
+            // Parse decimal part (optional)
+            if (pos < input.size() && input[pos] == '.') {
+                isFloat = true;
+                buffer += input[pos++];
+
+                // Require at least one digit after decimal
+                if (pos >= input.size() || !isdigit(input[pos])) {
+                    fail();
+                    break;
+                }
+
+                while (pos < input.size() && isdigit(input[pos])) {
+                    buffer += input[pos++];
+                }
+            }
+
+            // Parse exponent part (optional)
+            if (!buffer.empty() && pos < input.size() && tolower(input[pos]) == 'e') {
+                isFloat = true;
+                buffer += input[pos++];
+
+                // Parse optional sign
+                if (pos < input.size() && (input[pos] == '+' || input[pos] == '-')) {
+                    buffer += input[pos++];
+                }
+
+                // Require at least one digit in exponent
+                if (pos >= input.size() || !isdigit(input[pos])) {
+                    fail();
+                    break;
+                }
+
+                while (pos < input.size() && isdigit(input[pos])) {
+                    buffer += input[pos++];
+                }
+            }
+
+            // Validation and token creation
+            if (buffer.empty()) {  // Should never happen due to state transition
+                fail();
+            } else if (isFloat) {
+                Tokens.emplace_back(TypeToken::FloatValue, buffer);
+            } else {
+                Tokens.emplace_back(TypeToken::IntValue, buffer);
+            }
+
+            currentState = StateToken::Neutral;
+            break;
+        }
         case StateToken::SigleLineComment: {
             size_t start = pos;
             while (pos < input.size() && input[pos] != '\n') {
@@ -192,14 +262,50 @@ void Lexer::CreateToken() {
     }
 }
 
-
 char Lexer::currentChar() const{
 return input[pos];
 }
 char Lexer::consumeChar(){
     return input[pos++];
 }
+Token Lexer::getNumber() {
+    size_t start = pos;
+    bool hasDot = false;
+    bool hasExponent = false;
+    bool foundDigit = false;
 
+    while (pos < input.size()) {
+        char c = input[pos];
+
+        if (isdigit(c)) {
+            foundDigit = true;
+            pos++;
+        }
+        else if (c == '.' && !hasDot && !hasExponent) {
+            hasDot = true;
+            pos++;
+
+            if (pos >= input.size() || !isdigit(input[pos])) {
+                return Token{TypeToken::Unknown, input.substr(start, pos - start)};
+            }
+        }
+        else if ((c == 'e' || c == 'E') && !hasExponent && foundDigit) {
+            hasExponent = true;
+            pos++;
+
+            if (input[pos] == '+' || input[pos] == '-') {
+                pos++;
+            }
+
+            if (pos >= input.size() || !isdigit(input[pos])) {
+                return Token{TypeToken::Unknown, input.substr(start, pos - start)};
+            }
+        }
+        else {
+            break;
+        }
+    }
+// OLD VERSION
 // const std::unordered_map<std::string, TypeToken> Lexer::keywords = {
 //     {"int", TypeToken::Int},
 //     {"float", TypeToken::Float},
