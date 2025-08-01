@@ -289,6 +289,7 @@ void Lexer::CreateToken() {
             Tokens.emplace_back(TypeToken::Unknown, "|");
             currentState = StateToken::Neutral;
             break;
+        }
         case StateToken::OpAnd: {
             if (currentChar() == '&') {
                 Tokens.emplace_back(TypeToken::OpAnd, "&&");
