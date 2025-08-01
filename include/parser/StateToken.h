@@ -49,6 +49,7 @@ enum class StateToken {
     OpDivide,       // /
     OpModulo,       // %
 
+
     // Comparison operators
     OpEqual,        // ==
     OpNotEqual,     // !=

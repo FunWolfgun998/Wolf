@@ -40,6 +40,7 @@ enum class TypeToken {
 
     //Punctuation
     Colon,
+    Xor,
 
     // Basic operators
     OpAssign,       // =

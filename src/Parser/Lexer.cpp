@@ -53,6 +53,61 @@ void Lexer::CreateToken() {
                 consumeChar();
                 break;
             }
+            if(currentChar() == '%') {
+                currentState = StateToken::OpModulo;
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '=') {
+                currentState = StateToken::OpAssign;
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '!') {
+                currentState = StateToken::OpNot;
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '<') {
+                currentState = StateToken::OpLess;
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '>') {
+                currentState = StateToken::OpGreater;
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '&') {
+                currentState = StateToken::OpAnd;
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '|') {
+                currentState = StateToken::OpOr;
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '(') {
+                Tokens.emplace_back(TypeToken::LeftParen, "(");
+                consumeChar();
+                break;
+            }
+            if(currentChar() == ')') {
+                Tokens.emplace_back(TypeToken::RightParen, ")");
+                consumeChar();
+                break;
+            }
+            if(currentChar() == ':') {
+                Tokens.emplace_back(TypeToken::Colon, ":");
+                consumeChar();
+                break;
+            }
+            if(currentChar() == '^') {
+                Tokens.emplace_back(TypeToken::Xor, "^");
+                consumeChar();
+                break;
+            }
             if (std::isalpha(currentChar()) || currentChar() == '_') {
                 currentState = StateToken::Identifier;
                 break;
@@ -61,10 +116,14 @@ void Lexer::CreateToken() {
                 currentState = StateToken::Number;
                 break;
             }
-            if (currentChar() == '=') {
-
+            if (currentChar()=='\'') {
+                currentState = StateToken::Char;
+                break;
             }
-
+            if (currentChar()=='\"') {
+                currentState = StateToken::String;
+                break;
+            }
         }
         case StateToken::Indentation: {
             int count = 0;
@@ -150,6 +209,94 @@ void Lexer::CreateToken() {
                 break;
             }
             Tokens.emplace_back(TypeToken::OpDivide, "/");
+            currentState = StateToken::Neutral;
+            break;
+        }
+        case StateToken::OpModulo: {
+            if (currentChar() == '=') {
+                Tokens.emplace_back(TypeToken::OpModuloAssign, "%=");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            Tokens.emplace_back(TypeToken::OpModulo, "%");
+            currentState = StateToken::Neutral;
+            break;
+        }
+        case StateToken::OpAssign: {
+            if (currentChar() == '=') {
+                Tokens.emplace_back(TypeToken::OpEqual, "==");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            Tokens.emplace_back(TypeToken::OpAssign, "=");
+            currentState = StateToken::Neutral;
+            break;
+        }
+        case StateToken::OpNot: {
+            if (currentChar() == '=') {
+                Tokens.emplace_back(TypeToken::OpNotEqual, "!=");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            Tokens.emplace_back(TypeToken::OpNot, "!");
+            currentState = StateToken::Neutral;
+            break;
+        }
+        case StateToken::OpLess: {
+            if (currentChar() == '=') {
+                Tokens.emplace_back(TypeToken::OpLessEqual, "<=");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            if (currentChar() == '<') {
+                Tokens.emplace_back(TypeToken::OpShiftLeft , "<<");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            Tokens.emplace_back(TypeToken::OpLess, "<");
+            currentState = StateToken::Neutral;
+            break;
+        }
+        case StateToken::OpGreater: {
+            if (currentChar() == '=') {
+                Tokens.emplace_back(TypeToken::OpGreaterEqual, ">=");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            if (currentChar() == '>') {
+                Tokens.emplace_back(TypeToken::OpShiftRight, ">>");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            Tokens.emplace_back(TypeToken::OpGreater, ">");
+            currentState = StateToken::Neutral;
+            break;
+        }
+        case StateToken::OpOr: {
+            if (currentChar() == '|') {
+                Tokens.emplace_back(TypeToken::OpAnd, "||");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            Tokens.emplace_back(TypeToken::Unknown, "|");
+            currentState = StateToken::Neutral;
+            break;
+        case StateToken::OpAnd: {
+            if (currentChar() == '&') {
+                Tokens.emplace_back(TypeToken::OpAnd, "&&");
+                consumeChar();
+                currentState = StateToken::Neutral;
+                break;
+            }
+            Tokens.emplace_back(TypeToken::Unknown, "&");
             currentState = StateToken::Neutral;
             break;
         }
