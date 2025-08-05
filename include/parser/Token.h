@@ -4,78 +4,79 @@
 #ifndef MY_PARSER_TOKEN_H
 #define MY_PARSER_TOKEN_H
 enum class TypeToken {
-    // Type of value
-    Int,
-    Float,
-    Char,
-    String,
-    // Value
-    IntValue,
-    FloatValue,
-    CharValue,
-    StringValue,
+    // Type (4)
+    Int,        // 0
+    Float,      // 1
+    Char,       // 2
+    String,     // 3
 
-    // Logic gates
-    If,
-    Else,
-    Elif,
-    While,
-    For,
-    Return,
-    Break,
-    Continue,
-    True,
-    False,
+    // Type of value (4)
+    IntValue,   // 4
+    FloatValue, // 5
+    CharValue,  // 6
+    StringValue,// 7
 
-    // Functions
-    Func,
+    // Logic gates (10)
+    If,         // 8
+    Else,       // 9
+    Elif,       // 10
+    While,      // 11
+    For,        // 12
+    Return,     // 13
+    Break,      // 14
+    Continue,   // 15
+    True,       // 16
+    False,      // 17
 
-    // Structure
-    Indent,
-    Dedent,
-    Newline,
-    End,
-    LeftParen,
-    RightParen,
+    // Functions (1)
+    Func,       // 18
 
-    //Punctuation
-    Colon,
-    Xor,
+    // Structure (6)
+    Indent,     // 19
+    Dedent,     // 20
+    Newline,    // 21
+    End,        // 22
+    LeftParen,  // 23
+    RightParen, // 24
 
-    // Basic operators
-    OpAssign,       // =
-    OpPlus,         // +
-    OpMinus,        // -
-    OpMultiply,     // *
-    OpDivide,       // /
-    OpModulo,       // %
+    // Punctuation (1)
+    Colon,      // 25
 
-    // Comparison operators
-    OpEqual,        // ==
-    OpNotEqual,     // !=
-    OpLess,         // <
-    OpLessEqual,    // <=
-    OpGreater,      // >
-    OpGreaterEqual, // >=
+    // Basic operators (7)
+    OpAssign,   // 26 ( = )
+    OpPlus,     // 27 ( + )
+    OpMinus,    // 28 ( - )
+    OpMultiply, // 29 ( * )
+    OpDivide,   // 30 ( / )
+    OpModulo,   // 31 ( % )
+    OpXor,        // 32 ( ^ )
 
-    // Logical operators
-    OpAnd,          // &&
-    OpOr,           // ||
-    OpNot,          // !
+    // Comparison operators (6)
+    OpEqual,    // 33 ( == )
+    OpNotEqual, // 34 ( != )
+    OpLess,     // 35 ( < )
+    OpLessEqual,// 36 ( <= )
+    OpGreater,  // 37 ( > )
+    OpGreaterEqual, // 38 ( >= )
 
-    // Compound operators
-    OpPlusAssign,   // +=
-    OpMinusAssign,  // -=
-    OpMultiplyAssign, // *=
-    OpDivideAssign, // /=
-    OpModuloAssign, // %=
-    OpShiftLeft,// <<
-    OpShiftRight,// >>
+    // Logical operators (3)
+    OpAnd,      // 39 ( && )
+    OpOr,       // 40 ( || )
+    OpNot,      // 41 ( ! )
 
-    // Other
-    Comment,
-    Identifier,
-    Unknown
+    // Compound operators (7)
+    OpPlusAssign,   // 42 ( += )
+    OpMinusAssign,  // 43 ( -= )
+    OpMultiplyAssign, // 44 ( *= )
+    OpDivideAssign, // 45 ( /= )
+    OpModuloAssign, // 46 ( %= )
+    OpShiftLeft,    // 47 ( << )
+    OpShiftRight,   // 48 ( >> )
+
+    // Other (3)
+    Comment,    // 49
+    Identifier, // 50
+    Unknown     // 51
 };
 
 struct Token {
@@ -84,7 +85,6 @@ struct Token {
     size_t line;
     size_t column;
 
-    // Costruttore
     Token(TypeToken t, std::string val, size_t ln = 0, size_t col = 0)
         : type(t), value(std::move(val)), line(ln), column(col) {}
 };
