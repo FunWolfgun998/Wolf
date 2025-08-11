@@ -1,5 +1,5 @@
 
-int i=678
+int id = 678
 float f=7
 
 if(1):

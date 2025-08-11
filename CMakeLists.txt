@@ -4,14 +4,14 @@ project(Wolf)
 set(CMAKE_CXX_STANDARD 20)
 
 # Aggiungi tutti i file sorgente
-add_executable(Wolf
+add_executable(
+        Wolf
         src/main.cpp
         src/Parser/Lexer.cpp
         src/Parser/Parser.cpp
-
-        include/parser/parser.h
+        include/parser/Parser.h
         include/parser/Lexer.h
-        include/ast/ast.h
+        include/ast/AST.h
         include/ast/ASTVisitor.h
         test/ast_tests.cpp
         include/parser/Token.h

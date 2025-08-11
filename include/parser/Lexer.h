@@ -46,7 +46,7 @@ private:
         recoverFromError();
     }
 
-
+    void handleLexError(size_t start_pos);
     void skipWhitespace();
     void setIndentation();
     void consumeWhitespace();
@@ -63,9 +63,11 @@ private:
     Token getCompoundOperator(char first);
     Token createIndentToken(int level) const;
     Token createDedentToken(int level) const;
-    static TypeToken getKeywordToken(const std::string& str);
 
-    bool isOperatorStart(char c) const;
+    static TypeToken getKeywordToken(const std::string& str);
+    static TypeToken getOperatorToken(const std::string& str);
+
+    bool isOperator() const;
     bool isEOF() const;
     char advance();
     char currentChar() const;

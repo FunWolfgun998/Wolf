@@ -16,18 +16,6 @@ enum class StateToken {
     CharValue,
     StringValue,
 
-    // Logic gates
-    If,
-    Else,
-    Elif,
-    While,
-    For,
-    Return,
-    Break,
-    Continue,
-    True,
-    False,
-
     // Functions
     Func,
 
@@ -41,36 +29,8 @@ enum class StateToken {
     //Punctuation
     Colon,
 
-    // Basic operators
-    OpAssign,       // =
-    OpPlus,         // +
-    OpMinus,        // -
-    OpMultiply,     // *
-    OpDivide,       // /
-    OpModulo,       // %
+    Op,
 
-
-    // Comparison operators
-    OpEqual,        // ==
-    OpNotEqual,     // !=
-    OpLess,         // <
-    OpLessEqual,    // <=
-    OpGreater,      // >
-    OpGreaterEqual, // >=
-
-    // Logical operators
-    OpAnd,          // &&
-    OpOr,           // ||
-    OpNot,          // !
-
-    // Compound operators
-    OpPlusAssign,   // +=
-    OpMinusAssign,  // -=
-    OpMultiplyAssign, // *=
-    OpDivideAssign, // /=
-    OpModuloAssign, // %=
-    OpShiftLeft,// <<
-    OpShiftRight,// >>
 
     // Other
     SigleLineComment,
