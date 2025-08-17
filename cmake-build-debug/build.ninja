@@ -57,13 +57,13 @@ build CMakeFiles/Wolf.dir/src/main.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /ho
   OBJECT_DIR = CMakeFiles/Wolf.dir
   OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src
 
-build CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/Parser/Lexer.cpp || cmake_object_order_depends_target_Wolf
+build CMakeFiles/Wolf.dir/src/Lexer/Lexer.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/Lexer/Lexer.cpp || cmake_object_order_depends_target_Wolf
   CONFIG = Debug
-  DEP_FILE = CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.o.d
+  DEP_FILE = CMakeFiles/Wolf.dir/src/Lexer/Lexer.cpp.o.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I/home/cristian/CLionProjects/Wolf/include
   OBJECT_DIR = CMakeFiles/Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src/Parser
+  OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src/Lexer
 
 build CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/Parser/Parser.cpp || cmake_object_order_depends_target_Wolf
   CONFIG = Debug
@@ -81,14 +81,6 @@ build CMakeFiles/Wolf.dir/test/ast_tests.cpp.o: CXX_COMPILER__Wolf_unscanned_Deb
   OBJECT_DIR = CMakeFiles/Wolf.dir
   OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/test
 
-build CMakeFiles/Wolf.dir/src/Parser/Token.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/Parser/Token.cpp || cmake_object_order_depends_target_Wolf
-  CONFIG = Debug
-  DEP_FILE = CMakeFiles/Wolf.dir/src/Parser/Token.cpp.o.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I/home/cristian/CLionProjects/Wolf/include
-  OBJECT_DIR = CMakeFiles/Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src/Parser
-
 build CMakeFiles/Wolf.dir/test/parser_tests.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/test/parser_tests.cpp || cmake_object_order_depends_target_Wolf
   CONFIG = Debug
   DEP_FILE = CMakeFiles/Wolf.dir/test/parser_tests.cpp.o.d
@@ -97,21 +89,21 @@ build CMakeFiles/Wolf.dir/test/parser_tests.cpp.o: CXX_COMPILER__Wolf_unscanned_
   OBJECT_DIR = CMakeFiles/Wolf.dir
   OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/test
 
-build CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/ast/ASTPrinter.cpp || cmake_object_order_depends_target_Wolf
+build CMakeFiles/Wolf.dir/src/AST/ASTPrinter.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/AST/ASTPrinter.cpp || cmake_object_order_depends_target_Wolf
   CONFIG = Debug
-  DEP_FILE = CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.o.d
+  DEP_FILE = CMakeFiles/Wolf.dir/src/AST/ASTPrinter.cpp.o.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I/home/cristian/CLionProjects/Wolf/include
   OBJECT_DIR = CMakeFiles/Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src/ast
+  OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src/AST
 
-build CMakeFiles/Wolf.dir/src/ast/ASTNode.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/ast/ASTNode.cpp || cmake_object_order_depends_target_Wolf
+build CMakeFiles/Wolf.dir/src/AST/ASTNode.cpp.o: CXX_COMPILER__Wolf_unscanned_Debug /home/cristian/CLionProjects/Wolf/src/AST/ASTNode.cpp || cmake_object_order_depends_target_Wolf
   CONFIG = Debug
-  DEP_FILE = CMakeFiles/Wolf.dir/src/ast/ASTNode.cpp.o.d
+  DEP_FILE = CMakeFiles/Wolf.dir/src/AST/ASTNode.cpp.o.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I/home/cristian/CLionProjects/Wolf/include
   OBJECT_DIR = CMakeFiles/Wolf.dir
-  OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src/ast
+  OBJECT_FILE_DIR = CMakeFiles/Wolf.dir/src/AST
 
 
 # =============================================================================
@@ -121,7 +113,7 @@ build CMakeFiles/Wolf.dir/src/ast/ASTNode.cpp.o: CXX_COMPILER__Wolf_unscanned_De
 #############################################
 # Link the executable Wolf
 
-build Wolf: CXX_EXECUTABLE_LINKER__Wolf_Debug CMakeFiles/Wolf.dir/src/main.cpp.o CMakeFiles/Wolf.dir/src/Parser/Lexer.cpp.o CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.o CMakeFiles/Wolf.dir/test/ast_tests.cpp.o CMakeFiles/Wolf.dir/src/Parser/Token.cpp.o CMakeFiles/Wolf.dir/test/parser_tests.cpp.o CMakeFiles/Wolf.dir/src/ast/ASTPrinter.cpp.o CMakeFiles/Wolf.dir/src/ast/ASTNode.cpp.o
+build Wolf: CXX_EXECUTABLE_LINKER__Wolf_Debug CMakeFiles/Wolf.dir/src/main.cpp.o CMakeFiles/Wolf.dir/src/Lexer/Lexer.cpp.o CMakeFiles/Wolf.dir/src/Parser/Parser.cpp.o CMakeFiles/Wolf.dir/test/ast_tests.cpp.o CMakeFiles/Wolf.dir/test/parser_tests.cpp.o CMakeFiles/Wolf.dir/src/AST/ASTPrinter.cpp.o CMakeFiles/Wolf.dir/src/AST/ASTNode.cpp.o
   CONFIG = Debug
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Wolf.dir

@@ -7,37 +7,38 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(
         Wolf
         src/main.cpp
-        src/Parser/Lexer.cpp
+        src/Lexer/Lexer.cpp
         src/Parser/Parser.cpp
-        include/parser/Parser.h
-        include/parser/Lexer.h
-        include/ast/AST.h
-        include/ast/ASTVisitor.h
+        include/Parser/Parser.h
+        include/Lexer/Lexer.h
+        include/AST/AST.h
+        include/AST/ASTVisitor.h
         test/ast_tests.cpp
-        include/parser/Token.h
-        src/Parser/Token.cpp
+        include/Lexer/Token.h
         test/parser_tests.cpp
-        include/ast/ASTPrinter.h
-        src/ast/ASTPrinter.cpp
-        include/parser/ParseError.h
-        include/ast/ASTNode.h
-        include/ast/nodes/BinaryExprNode.h
-        include/ast/nodes/ProgramNode.h
-        include/ast/nodes/IntLiteralNode.h
-        include/ast/nodes/StringLiteralNode.h
-        include/ast/nodes/BootLiteralNode.h
-        include/ast/nodes/NullLiteralNode.h
-        include/ast/nodes/IdentifierNode.h
-        include/ast/nodes/AssignmentNode.h
-        include/ast/nodes/UnaryExprNode.h
-        include/ast/nodes/VariableDeclNode.h
-        include/ast/nodes/AllNodes.h
-        include/ast/nodes/VariableInitNode.h
-        include/ast/nodes/CharLiteralNode.h
-        src/ast/ASTNode.cpp
-        include/ast/nodes/IfNode.h
-        include/ast/nodes/BlockNode.h
-        include/parser/StateToken.h
+        include/AST/ASTPrinter.h
+        src/AST/ASTPrinter.cpp
+        include/Parser/ParseError.h
+        include/AST/ASTNode.h
+        include/AST/Nodes/BinaryExprNode.h
+        include/AST/Nodes/ProgramNode.h
+        include/AST/Nodes/IntLiteralNode.h
+        include/AST/Nodes/StringLiteralNode.h
+        include/AST/Nodes/BootLiteralNode.h
+        include/AST/Nodes/NullLiteralNode.h
+        include/AST/Nodes/IdentifierNode.h
+        include/AST/Nodes/AssignmentNode.h
+        include/AST/Nodes/UnaryExprNode.h
+        include/AST/Nodes/VariableDeclNode.h
+        include/AST/Nodes/AllNodes.h
+        include/AST/Nodes/VariableInitNode.h
+        include/AST/Nodes/CharLiteralNode.h
+        src/AST/ASTNode.cpp
+        include/AST/Nodes/IfNode.h
+        include/AST/Nodes/BlockNode.h
+        include/Lexer/StateToken.h
+        include/Parser/Scope.h
+        include/Parser/Symbol.h
 )
 
 # Includi i file header

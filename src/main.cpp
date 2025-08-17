@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "parser/Lexer.h"
-#include "parser/Parser.h"
-#include "ast/ASTPrinter.h"
+#include "../include/Lexer/Lexer.h"
+#include "Parser/Parser.h"
+#include "AST/ASTPrinter.h"
 
 // Funzione per leggere il contenuto di un file
 std::string readFile(const std::string& filePath) {

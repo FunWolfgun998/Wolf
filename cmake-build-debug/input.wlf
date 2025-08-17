@@ -1,6 +1,6 @@
 
 int id = 678
-float f=7
+float f=7.98e67
 
 if(1):
     int o
